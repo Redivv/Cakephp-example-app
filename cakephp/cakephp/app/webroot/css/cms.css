@@ -1,0 +1,50 @@
+
+body{
+  padding: 0px;
+  margin: 0px;
+  background: #ddd;
+}
+.clearfix{
+  clear:both;
+}
+.right{
+  float: left;
+  width: 72%;
+  padding: 1%;
+}
+.left{
+  float: left;
+  width: 25%;
+  background: #444;
+  min-height: 100vh;
+  color:#ddd;
+  border-right: 1px solid #000;
+}
+.left a{
+  padding: 10px 0px;
+  text-align: center;
+  display: block;
+  color: #fff !important;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #444;
+}
+.news_btn{
+  float:right;
+}
+.news_form{
+  width: 80%;
+  margin: 10px 8%;
+}
+.contact_links a{
+  display:block;
+  padding: 5px;
+  text-decoration: none;
+  border: 1px solid #777;
+  background: #ddd;
+  float:left;
+}
+.delete{
+  border:2px solid #d00 !important;
+  background: #f00 !important;
+  color:#fff !important;
+}
