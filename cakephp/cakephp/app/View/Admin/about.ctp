@@ -11,8 +11,11 @@ W "$element['helper']['menu'] trzymana jest nazwa podstrony (about, index itd.) 
       <form class="" action="" method="post" enctype="multipart/form-data">
         <input type="file" name="data[Photo]"/>
         <input type="hidden" name="data[id]" value="<?php echo $element['Photo'][$i]['2']; ?>"/>
+        <input type="hidden" name="data[Slider_photos.id]" value="<?php echo $element['Photo'][$i]['3']; ?>"/>
 
-        <input type="submit" name=""><BR/>
+        <input type="submit" name="">
+        <input type="submit" name="data[delete]" value="X-del" style="float:right;">
+        <BR/>
       </form>
 
     </div><?php } ?>
