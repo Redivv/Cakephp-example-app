@@ -73,53 +73,75 @@ class AdminController extends AppController {
 				array(
 					//warunki [WHERE]
 					'conditions'=>array(
-						'Slider_photos.slider_id'=>$tmp['Slider_id']
+						'Slider_photos.slider_id'=>$tmp['Slider_id'],
+						'Slider_photos.active'=>1
 					),
 					//wybiera pola:
 					'fields'=>array(
+						'Slider_photos.id',
 						'Slider_photos.photo_id'
 					)));
 					$element['Slider']['number']=$slides_number=count($tmp['Photo_id']);
 
 			for ($i=1; $i <=$slides_number ; $i++) {
-				$element['Photo'][$i]['1'] = $this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
+				$element['Photo'][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
 				$element['Photo'][$i]['2']=$tmp['Photo_id'][$i-1]['Slider_photos']['photo_id'];
+				$element['Photo'][$i]['3']=$tmp['Photo_id'][$i-1]['Slider_photos']['id'];
+
 			}
+			//$this->dupcia($element['Photo']);
 				//END SLIDER1! ---------------------------------------------------------------------------------------
 
  	//START UPLOAD_PHOTOS ------------------------------------------------------------------------
 		if($this->request->is('post')){
-			$data=$this->data;
 
-			//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
-			$ret=$this->upload_photo($data['Photo']);
-			if(!$ret){
-				//jeśli się nie uda dodanie id od zdjęcia, czytaj zdjęcie się nie dodało dostajemy info, że zdjęcie się nie dodało
-				$this->Session->setFlash('Błąd przy dodawaniu zdjęcia');
-				//i wysyła nas do about...
+
+			$data=$this->data;
+			if(isset($data['delete'])){
+				$data['Photo']=array(
+					'id'=>$data['Slider_photos.id'],
+					'slider_id'=>$tmp['Slider_id'],
+					'active'=>0
+				);
+				//$this->dupcia($data['Slider_photos.id']);
+				$this->Slider_photos->save($data['Photo']);
+				//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
+				$this->Session->setFlash('usunięto slajd');
+				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
 				$this->redirect(array('action'=>'about'));
 			}else{
-				$data['Slider_photos']['photo_id']=$ret;
+				//$this->dupcia($data);
+				//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
+				$ret=$this->upload_photo($data['Photo']);
+				if(!$ret){
+					//jeśli się nie uda dodanie id od zdjęcia, czytaj zdjęcie się nie dodało dostajemy info, że zdjęcie się nie dodało
+					$this->Session->setFlash('Błąd przy dodawaniu zdjęcia');
+					//i wysyła nas do about...
+					$this->redirect(array('action'=>'about'));
+				}else{
+					$data['Slider_photos']['photo_id']=$ret;
+				}
+				//zapisujemy naszego photosa do tablicy slider_photos.
+				if($data['id']>0){
+					$data['Photo']=array(
+						'id'=>$data['Slider_photos.id'],
+						'photo_id'=>$ret,
+						'slider_id'=>$tmp['Slider_id']
+					);
+				}else{
+					$data['Photo']=array(
+						'id'=>0,
+						'photo_id'=>$ret,
+						'slider_id'=>$tmp['Slider_id']
+					);
+				}
+				//$this->dupcia($data['Photo']);
+				$this->Slider_photos->save($data['Photo']);
+				//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
+				$this->Session->setFlash('Dane zapisane');
+				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
+				$this->redirect(array('action'=>'about'));
 			}
-			//zapisujemy naszego newsa do tablicy photos.
-			if($data['id']>0){
-				$data['Photo']=array(
-					'id'=>$data['id'],
-					'photo_id'=>$ret,
-					'slider_id'=>$tmp['Slider_id']
-				);
-			}else{
-				$data['Photo']=array(
-					'id'=>0,
-					'photo_id'=>$ret,
-					'slider_id'=>$tmp['Slider_id']
-				);
-			}
-			$this->Slider_photos->save($data['Photo']);
-			//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
-			$this->Session->setFlash('Dane zapisane');
-			//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
-			$this->redirect(array('action'=>'about'));
 		}
 	//END UPLOAD_PHOTOS ------------------------------------------------------------------------
 
