@@ -23,7 +23,8 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
   public $uses = array(
-    'Photos'
+    'Photos',
+    'Settings'
   );
   /*public function beforeFilter(){
     $app=array();
@@ -46,6 +47,15 @@ class AppController extends Controller {
     if($tmp){
       return '/cakephp/upload/'.$tmp['Photos']['hash'].'.'.$tmp['Photos']['ext'];
     }else{return '';}
+  }
+  public function get_settings(){
+    $tmp=$this->Settings->find('all',array(
+      'fields'=>array(
+        'Settings.name',
+        'Settings.value'
+      )
+    ));
+    return $tmp;
   }
 
 
