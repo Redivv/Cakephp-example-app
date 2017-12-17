@@ -65,6 +65,7 @@
   		}
         //END SLIDER1!
 
+      $element['Settings']=$this->get_settings();
       $this->set("element",$element);
     }
 

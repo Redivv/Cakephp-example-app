@@ -28,9 +28,9 @@ class AdminController extends AppController {
 		'Slider_photos'
 	);
 
-	private function dupcia($dataaa=''){
+	private function dupcia($data=''){
 	 echo '<pre>';
-	 var_dump($dataaa);
+	 var_dump($data);
 	 echo '</pre>';
 	 die();
  }
@@ -93,11 +93,10 @@ class AdminController extends AppController {
 				//END SLIDER1! ---------------------------------------------------------------------------------------
 
  	//START UPLOAD_PHOTOS ------------------------------------------------------------------------
-		if($this->request->is('post')){
-
+		if((isset($_POST['photo'])) || (isset($_POST['delete']))){
 
 			$data=$this->data;
-			if(isset($data['delete'])){
+			if(isset($_POST['delete'])){
 				$data['Photo']=array(
 					'id'=>$data['Slider_photos.id'],
 					'slider_id'=>$tmp['Slider_id'],
@@ -145,8 +144,23 @@ class AdminController extends AppController {
 		}
 	//END UPLOAD_PHOTOS ------------------------------------------------------------------------
 
+	//START UPLOAD_TEXT
+		if(isset($_POST['text'])){
+			$data=$this->data;
+			$setting=array(
+				'id'=>$data['id'],
+				'name'=>$data['name'],
+				'value'=>trim($data['settings'])
+			);
+			$element['Settings'][$data['name']]=$setting['value'];
+			$this->Settings->save($setting);
+			$this->Session->setFlash('Dane zapisane');
+			$this->redirect(array('action'=>'about'));
+		}
 
 
+	//END UPLOAD_TEXT
+		$element['Settings']=$this->get_settings();
 		$this->set('element',$element);
 	}
 	public function gallery() {
