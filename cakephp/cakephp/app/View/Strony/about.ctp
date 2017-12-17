@@ -12,10 +12,10 @@
 
 <section class="description-about">
   <div class="name-about">
-    <h2>name</h2>
+    <h2><?php echo $element['Settings'][0]['Settings']['value'] ?></h2>
   </div>
   <div class="introduction-about">
-    <h3>introduction</h3>
+    <h3><?php echo $element['Settings'][1]['Settings']['value'] ?></h3>
   </div>
   <div class="text-about">
     o mnie
