@@ -52,7 +52,8 @@
   			array(
   				//warunki [WHERE]
   				'conditions'=>array(
-            'Slider_photos.slider_id'=>$tmp['Slider_id']
+            'Slider_photos.slider_id'=>$tmp['Slider_id'],
+						'Slider_photos.active'=>1
   				),
   				//wybiera pola:
   				'fields'=>array(
