@@ -6,7 +6,9 @@
 			My Page
 		</title>
 		<!-- Moje Pliki -->
-		<?php echo $this->element('meta'); ?>
+		<?php echo $this->Html->css('cms.css'); ?>
+		<?php echo $this->Html->css('main.css'); ?>
+
 	</head>
 	<body>
 		<div class="left">

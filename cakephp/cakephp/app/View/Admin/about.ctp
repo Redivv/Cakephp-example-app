@@ -36,7 +36,7 @@ W "$element['helper']['menu'] trzymana jest nazwa podstrony (about, index itd.) 
   <form class="" method="post">
     <input type="hidden" name="id" value="1">
     <input type="hidden" name="name" value="Text 1">
-    <input type="text" name="data[settings]" value="<?php echo $element['Settings'][0]['Settings']['value'] ?>">
+    <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][0]['Settings']['value'] ?></textarea>
     <input type="submit" name="text">
   </form>
 </section>
@@ -45,7 +45,14 @@ W "$element['helper']['menu'] trzymana jest nazwa podstrony (about, index itd.) 
   <form class="" method="post">
     <input type="hidden" name="id" value="2">
     <input type="hidden" name="name" value="Text 2">
-    <input type="text" name="data[settings]" value="<?php echo $element['Settings'][1]['Settings']['value'] ?>">
+    <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][1]['Settings']['value'] ?></textarea>
+    <input type="submit" name="text">
+  </form>
+  Tekst 3
+  <form class="" method="post">
+    <input type="hidden" name="id" value="3">
+    <input type="hidden" name="name" value="Text 3">
+    <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][2]['Settings']['value'] ?></textarea>
     <input type="submit" name="text">
   </form>
 </section>
