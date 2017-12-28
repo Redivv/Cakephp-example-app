@@ -22,6 +22,11 @@
   <?php echo $this->Html->css('bootstrap-theme.min.css') ?>
   <?php echo $this->Html->script('bootstrap.min.js');?>
 
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
 <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Indie+Flower|Josefin+Sans:400,600&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
@@ -32,3 +37,7 @@
 
 <!-- My Scripts -->
   <?php echo $this->Html->script('main.js');?>
+
+  <!-- owl carousel -->
+    <link rel="stylesheet" href="plugins/owlcarousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/owlcarousel/dist/assets/owl.theme.default.min.css">
