@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Główna</title>
 	<?php echo $this->element('meta'); ?>
 </head>
 

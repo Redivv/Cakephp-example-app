@@ -63,31 +63,37 @@ class AdminController extends AppController {
 					array(
 						'Sliders.id'
 					)));
-			$tmp['Slider_id']=$tmp['Slider_id'][0]['Sliders']['id'];
+			$tmp['Slider_count']=count($tmp['Slider_id']);
 
 
-			$tmp['Photo_id']=$this->Slider_photos->find(
-				//wszystkie...
-				'all',
-				//dla których...
-				array(
-					//warunki [WHERE]
-					'conditions'=>array(
-						'Slider_photos.slider_id'=>$tmp['Slider_id'],
-						'Slider_photos.active'=>1
-					),
-					//wybiera pola:
-					'fields'=>array(
-						'Slider_photos.id',
-						'Slider_photos.photo_id'
-					)));
-					$element['Slider']['number']=$slides_number=count($tmp['Photo_id']);
 
-			for ($i=1; $i <=$slides_number ; $i++) {
-				$element['Photo'][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
-				$element['Photo'][$i]['2']=$tmp['Photo_id'][$i-1]['Slider_photos']['photo_id'];
-				$element['Photo'][$i]['3']=$tmp['Photo_id'][$i-1]['Slider_photos']['id'];
+			for ($j=1; $j<=$tmp['Slider_count'] ; $j++) {
+				$tmp['Slider_id'][$j-1]=$tmp['Slider_id'][$j-1]['Sliders']['id'];
 
+				$tmp['Photo_id']=$this->Slider_photos->find(
+					//wszystkie...
+					'all',
+					//dla których...
+					array(
+						//warunki [WHERE]
+						'conditions'=>array(
+							'Slider_photos.slider_id'=>$tmp['Slider_id'][$j-1],
+							'Slider_photos.active'=>1
+						),
+						//wybiera pola:
+						'fields'=>array(
+							'Slider_photos.id',
+							'Slider_photos.photo_id'
+						)));
+						$element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);
+						//$this->dupcia($tmp['Photo_id'][0]['Slider_photos']['photo_id']);
+
+				for ($i=1; $i <=$slides_number ; $i++) {
+					$element['Photo'][$j-1][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
+					$element['Photo'][$j-1][$i]['2']=$tmp['Photo_id'][$i-1]['Slider_photos']['photo_id'];
+					$element['Photo'][$j-1][$i]['3']=$tmp['Photo_id'][$i-1]['Slider_photos']['id'];
+
+				}
 			}
 			//$this->dupcia($element['Photo']);
 				//END SLIDER1! ---------------------------------------------------------------------------------------
@@ -99,7 +105,7 @@ class AdminController extends AppController {
 			if(isset($_POST['delete'])){
 				$data['Photo']=array(
 					'id'=>$data['Slider_photos.id'],
-					'slider_id'=>$tmp['Slider_id'],
+					'slider_id'=>$data['Slider_id'],
 					'active'=>0
 				);
 				//$this->dupcia($data['Slider_photos.id']);
@@ -125,16 +131,15 @@ class AdminController extends AppController {
 					$data['Photo']=array(
 						'id'=>$data['Slider_photos.id'],
 						'photo_id'=>$ret,
-						'slider_id'=>$tmp['Slider_id']
+						'slider_id'=>$data['Slider_id']
 					);
 				}else{
 					$data['Photo']=array(
 						'id'=>0,
 						'photo_id'=>$ret,
-						'slider_id'=>$tmp['Slider_id']
+						'slider_id'=>$data['Slider_id']
 					);
 				}
-				//$this->dupcia($data['Photo']);
 				$this->Slider_photos->save($data['Photo']);
 				//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
 				$this->Session->setFlash('Dane zapisane');

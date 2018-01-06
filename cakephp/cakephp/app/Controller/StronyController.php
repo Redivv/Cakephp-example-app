@@ -32,39 +32,46 @@
     public function about() {
       $element = $tmp = array();
       $element['helper']['menu']='about';
-      //START SLIDER1!
-      $tmp['Slider_id']=$this->Sliders->find(
-        'all',
-        array(
-          'conditions'=>array(
-            'Sliders.name'=>'about'
-          ),
-          array(
-            'Sliders.id'
-          )));
-      $tmp['Slider_id']=$tmp['Slider_id'][0]['Sliders']['id'];
+      //START SLIDER1!  ---------------------------------------------------------------
+  			$tmp['Slider_id']=$this->Sliders->find(
+  				'all',
+  				array(
+  					'conditions'=>array(
+  						'Sliders.name'=>'about'
+  					),
+  					array(
+  						'Sliders.id'
+  					)));
+  			$tmp['Slider_count']=count($tmp['Slider_id']);
 
 
-      $tmp['Photo_id']=$this->Slider_photos->find(
-  		  //wszystkie...
-  			'all',
-  			//dla których...
-  			array(
-  				//warunki [WHERE]
-  				'conditions'=>array(
-            'Slider_photos.slider_id'=>$tmp['Slider_id'],
-						'Slider_photos.active'=>1
-  				),
-  				//wybiera pola:
-  				'fields'=>array(
-  					'Slider_photos.photo_id'
-  				)));
-          $element['Slider']['number']=$slides_number=count($tmp['Photo_id']);
 
-      for ($i=1; $i <=$slides_number ; $i++) {
-  			$element['Photo'][$i] = $this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
-  		}
-        //END SLIDER1!
+  			for ($j=1; $j<=$tmp['Slider_count'] ; $j++) {
+  				$tmp['Slider_id'][$j-1]=$tmp['Slider_id'][$j-1]['Sliders']['id'];
+
+  				$tmp['Photo_id']=$this->Slider_photos->find(
+  					//wszystkie...
+  					'all',
+  					//dla których...
+  					array(
+  						//warunki [WHERE]
+  						'conditions'=>array(
+  							'Slider_photos.slider_id'=>$tmp['Slider_id'][$j-1],
+  							'Slider_photos.active'=>1
+  						),
+  						//wybiera pola:
+  						'fields'=>array(
+  							'Slider_photos.id',
+  							'Slider_photos.photo_id'
+  						)));
+  						$element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);
+  						//$this->dupcia($tmp['Photo_id'][0]['Slider_photos']['photo_id']);
+
+  				for ($i=1; $i <=$slides_number ; $i++) {
+  					$element['Photo'][$j-1][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
+  				}
+  			}
+  				//END SLIDER1! ---------------------------------------------------------------------------------------
 
       $element['Settings']=$this->get_settings();
       $this->set("element",$element);

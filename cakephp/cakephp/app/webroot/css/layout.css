@@ -41,7 +41,7 @@ body{font-family: 'Roboto', sans-serif;}
 
 }
 
-.header_home{
+.header{
 	width:99%;
 	padding:0px 20px;
 }
@@ -91,7 +91,6 @@ body{font-family: 'Roboto', sans-serif;}
   position: absolute !important;
 	text-align:center;
 	font-size:17px;
-
   left:0px; right:0px;
   line-height:25px;
   display: block;
