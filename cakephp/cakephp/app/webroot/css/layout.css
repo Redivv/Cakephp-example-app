@@ -5,6 +5,7 @@ a:link {text-decoration: none;}
 a:visited {text-decoration: none;}
 a:hover {text-decoration: none;}
 a:active {text-decoration: none;}
+a{text-decoration: none;}
 
 	/* colors */
 
@@ -49,6 +50,35 @@ body{font-family: 'Roboto', sans-serif;}
 	padding:32px 0 34px 0;
 }
 
+.header #gallery:hover{
+  border:none;
+}
+.header #gallery:hover .slide-menu{
+ display: block;
+
+}
+.header .slide-menu{
+  width: 120px;
+  display: none;
+  background-color:rgba(0,0,0, 0.8);
+  border-radius: 15px;
+  font-size: 17px;
+}
+.header .slide-menu .button{
+  border-bottom: 1px solid #bc9774;
+  padding-bottom: 14px;
+  padding-top: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: block;
+  color:#fff;
+  font-family: 'Indie Flower', sans-serif;
+  text-transform: none;
+}
+.header .slide-menu .button:hover{
+  color:#bc9774;
+}
+
 .page_logo_link{
 	font-size:42px;
 	width:230px;
@@ -76,10 +106,17 @@ body{font-family: 'Roboto', sans-serif;}
 	text-transform:uppercase;
 	display:block;
 }
+.menu_box .strip{
+  background-color: #000;
+  width:0px;
+  height:1px;
+  border-radius: 5%;
+}
+.menu_box:hover .strip{
+  width:100%
+}
 .menu_box:hover{
-  color:#fff;
   cursor: pointer;
-  border-bottom:1px solid #fff;
 }
 .background_home_img{
 	background-image:url('../img/background.jpg')
@@ -96,11 +133,7 @@ body{font-family: 'Roboto', sans-serif;}
   display: block;
 	font-family: 'Josefin Sans', sans-serif;
 }
-.slider{
-  height: 300px;
-  width: 100%;
-  background-color: #f00;
-}
+
 
 /* about */
 
