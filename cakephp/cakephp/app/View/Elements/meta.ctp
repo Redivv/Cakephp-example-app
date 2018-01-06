@@ -39,5 +39,6 @@
   <?php echo $this->Html->script('main.js');?>
 
   <!-- owl carousel -->
-    <link rel="stylesheet" href="plugins/owlcarousel/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="plugins/owlcarousel/dist/assets/owl.theme.default.min.css">
+    <?php echo $this->Html->css('owl.carousel.min.css'); ?>
+    <?php echo $this->Html->css('owl.theme.default.min.css'); ?>
+    <?php echo $this->Html->script('owl.carousel.min.js');?>
