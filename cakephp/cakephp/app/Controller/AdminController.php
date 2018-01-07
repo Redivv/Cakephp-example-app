@@ -25,7 +25,8 @@ class AdminController extends AppController {
 		'Settings',
 		'Sliders',
 		'Galleries',
-		'Slider_photos'
+		'Slider_photos',
+		'User'
 	);
 
 	private function dupcia($data=''){
@@ -37,18 +38,41 @@ class AdminController extends AppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->layout = 'cms';
+		$this->Auth->allow('index');					// funkcja index jest dostępna dla niezalogowanych
 	}
+
 	public function index(){
-		$element=$tmp=array();
+		$this->layout='login';
+		if($this->request->is('post')){
+			if($this->Auth->login()){					// przeprowadza autentykacje
+				$check_user=$this->Auth->user();
+				$this->redirect(array(				// po pomyślnym zalogawniu przenosi na admin/dashboard
+					'controller'=>'admin',
+					'action'=>'dashboard'
+				));
+			}else{
+				$this->Session->setFlash('Nieprawidłowy login','bad');		// wypisuje wiadomość z elementem bad.ctp
+			}
+		}
+		// DODAWNIE NOWEGO USERA //
+		/*if($this->request->is('post'))​​{
+			$data​​=​​$this->data;
+			$this->User->save($data['User']);
+			echo​​’Dodano’;
+			die();
+		*/
+}
 
-		$this->layout = 'login';
-		$this->set('element',$element);
 	}
+
 	public function dashboard(){
-		$element=$tmp=array();
 
-
-		$this->set('element',$element);
+	}
+	public function logout()
+	{
+		$this->layout=null;
+		$this->request=null;
+		$this->redirect($this->Auth->logout());
 	}
 	public function about(){
 		$element=$tmp=array();

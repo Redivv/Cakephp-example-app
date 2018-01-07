@@ -63,6 +63,11 @@ body{font-family: 'Roboto', sans-serif;}
   background-color:rgba(0,0,0, 0.8);
   border-radius: 15px;
   font-size: 17px;
+  position: absolute;
+  z-index: 100000000000000000000000000001;
+}
+.header .slide-menu:hover{
+  display: none;
 }
 .header .slide-menu .button{
   border-bottom: 1px solid #bc9774;
@@ -105,6 +110,7 @@ body{font-family: 'Roboto', sans-serif;}
   font-weight: bold;
 	text-transform:uppercase;
 	display:block;
+  padding-bottom: 20px;
 }
 .menu_box .strip{
   background-color: #000;
@@ -145,4 +151,13 @@ body{font-family: 'Roboto', sans-serif;}
   text-align: center;
   padding-left: 250px;
   padding-right: 250px;
+}
+
+/* login */
+.login{
+  margin:40px auto;
+  width:300px;
+}
+.login input{
+  width:100%;
 }

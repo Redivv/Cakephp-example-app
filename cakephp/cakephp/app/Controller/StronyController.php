@@ -19,7 +19,9 @@
 
   public function beforeFilter() {
     parent::beforeFilter();
+    $this->Auth->allow();       // wszystkie funkcje są dostępne dla niezalogowanych 
   }
+
 
   public function index(){
     $element = $tmp = array();
@@ -78,7 +80,21 @@
     }
 
 
-    public function gallery(){
+    public function wesela(){
+      $element = $tmp = array();
+      $element['helper']['menu']='gallery';
+
+      $this->set("element",$element);
+    }
+
+    public function sesje(){
+      $element = $tmp = array();
+      $element['helper']['menu']='gallery';
+
+      $this->set("element",$element);
+    }
+
+    public function plenery(){
       $element = $tmp = array();
       $element['helper']['menu']='gallery';
 

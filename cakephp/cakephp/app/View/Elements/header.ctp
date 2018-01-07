@@ -10,13 +10,13 @@
       <div class="row">
           <div class="page_menu col-md-12" style="text-decoration:none;">
               <a href="/cakephp/strony/about/" class="col-md-1 col-sm-2 black col-xs-3 col-sm-offset-2 col-md-offset-4 menu_box anim_short">O mnie<div class="strip anim_short"></div></a>
-              <div id="gallery" class="col-md-1 col-sm-2 black col-xs-3 menu_box"><a href="/cakephp/strony/gallery" style="color:inherit !important;">Galeria</a>
+              <div id="gallery" class="col-md-1 col-sm-2 black col-xs-3 menu_box"><a style="color:inherit !important;">Galeria</a>
 
                 <!-- menu slide -->
                 <div class="slide-menu m-t-20">
-                  <a class="button anim_short">Wesela</a>
-                  <a class="button anim_short">Plenery</a>
-                  <a class="button anim_short" style="border:0 !important;">Sesje</a> <!-- ostatni div bez borderu -->
+                  <a href="/cakephp/strony/wesela" class="button anim_short">Wesela</a>
+                  <a href="/cakephp/strony/plenery" class="button anim_short">Plenery</a>
+                  <a href="/cakephp/strony/sesje" class="button anim_short" style="border:0 !important;">Sesje</a> <!-- ostatni div bez borderu -->
                 </div>
                 <!-- menu slide -->
 
