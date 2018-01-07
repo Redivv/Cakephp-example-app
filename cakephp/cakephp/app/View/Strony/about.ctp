@@ -1,12 +1,9 @@
 <section class="about">
 
       <div class="owl-carousel owl-theme p-r-15 p-l-15">
-        <div class="item"><h4>1</h4></div>
-        <div class="item"><h4>2</h4></div>
-        <div class="item"><h4>3</h4></div>
-        <div class="item"><h4>4</h4></div>
-        <div class="item"><h4>5</h4></div>
-        <div class="item"><h4>6</h4></div>
+        <?php for ($i=1; $i<=$element['Slider'][0]['number'] ; $i++) {?>
+          <div class="item"><img src="<?php echo $element['Photo'][0][$i][1];?>"></div>
+        <?php }?>
       </div>
 
 <div class="clearfix"></div>
@@ -27,19 +24,19 @@
   <div class="photo-box">
     <!-- photo row -->
     <div class="photo">
-      photo2
+      <img src="<?php if(isset($element['Photo'][1][1][1])){echo $element['Photo'][1][1][1];} ?>" alt="">
     </div>
     <div class="photo">
-      photo2
+      <img src="<?php if(isset($element['Photo'][1][2][1])){echo $element['Photo'][1][2][1];} ?>" alt="">
     </div>
     <div class="clearfix"></div>
     <!-- Photo row -->
     <!-- photo row -->
     <div class="photo">
-      photo2
+      <img src="<?php if(isset($element['Photo'][1][3][1])){echo $element['Photo'][1][3][1];} ?>" alt="">
     </div>
     <div class="photo">
-      photo2
+      <img src="<?php if(isset($element['Photo'][1][4][1])){echo $element['Photo'][1][4][1];} ?>" alt="">
     </div>
     <div class="clearfix"></div>
     <!-- Photo row -->

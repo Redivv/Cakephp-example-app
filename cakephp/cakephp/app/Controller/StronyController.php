@@ -10,16 +10,17 @@
       'Slider_photos'
   );
 
-  // private function dupcia($data=''){
-  // 	 echo '<pre>';
-  // 	 var_dump($data);
-  // 	 echo '</pre>';
-  // 	 die();
-  // }
+   private function dupcia($data=''){
+   	 echo '<pre>';
+   	 var_dump($data);
+   	 echo '</pre>';
+   	 die();
+   }
+
 
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow();       // wszystkie funkcje są dostępne dla niezalogowanych 
+    $this->Auth->allow();       // wszystkie funkcje są dostępne dla niezalogowanych
   }
 
 
@@ -66,8 +67,7 @@
   							'Slider_photos.id',
   							'Slider_photos.photo_id'
   						)));
-  						$element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);
-  						//$this->dupcia($tmp['Photo_id'][0]['Slider_photos']['photo_id']);
+  						$element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);;
 
   				for ($i=1; $i <=$slides_number ; $i++) {
   					$element['Photo'][$j-1][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
