@@ -84,4 +84,11 @@
 
     </div>
     <div class="clearfix"></div>
+  Tekst 4
+  <form class="" method="post">
+    <input type="hidden" name="id" value="4">
+    <input type="hidden" name="name" value="Text 4">
+    <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][3]['Settings']['value'] ?></textarea>
+    <input type="submit" name="text">
+  </form>
 </section>

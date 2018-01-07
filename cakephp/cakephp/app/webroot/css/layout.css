@@ -122,7 +122,9 @@ body{font-family: 'Roboto', sans-serif;}
   width:100%
 }
 .menu_box:hover{
+  color:#fff;
   cursor: pointer;
+  border-bottom:1px solid #fff;
 }
 .background_home_img{
 	background-image:url('../img/background.jpg')
@@ -134,14 +136,33 @@ body{font-family: 'Roboto', sans-serif;}
   position: absolute !important;
 	text-align:center;
 	font-size:17px;
+
   left:0px; right:0px;
   line-height:25px;
   display: block;
 	font-family: 'Josefin Sans', sans-serif;
 }
 
+.slider{
+  height: 300px;
+  width: 100%;
+  background-color: #f00;
+}
 
 /* about */
+.about .owl-carousel{
+
+}
+.about .item{
+  background-color: #f0f;
+  border-radius: 15px;
+  width:100%;
+}
+.about .item:after {
+  content: "";
+  display: block;
+  padding-bottom: 90%;
+}
 
 .about .name, .introduction{
   text-align: center;
@@ -157,6 +178,9 @@ body{font-family: 'Roboto', sans-serif;}
 .login{
   margin:40px auto;
   width:300px;
+.about .photo-box{
+  width:60%;
+  margin-left: 20%;
 }
 .login input{
   width:100%;
