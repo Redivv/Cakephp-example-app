@@ -123,8 +123,6 @@ body{font-family: 'Roboto', sans-serif;}
 }
 .menu_box:hover{
   color:#fff;
-  cursor: pointer;
-  border-bottom:1px solid #fff;
 }
 .background_home_img{
 	background-image:url('../img/background.jpg')
@@ -178,6 +176,7 @@ body{font-family: 'Roboto', sans-serif;}
 .login{
   margin:40px auto;
   width:300px;
+}
 .about .photo-box{
   width:60%;
   margin-left: 20%;

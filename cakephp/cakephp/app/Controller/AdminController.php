@@ -63,8 +63,6 @@ class AdminController extends AppController {
 		*/
 }
 
-	}
-
 	public function dashboard(){
 
 	}
@@ -311,7 +309,4 @@ class AdminController extends AppController {
 		}
 		$this->set('element',$element);
 	}
-
-
-
 }
