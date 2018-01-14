@@ -184,3 +184,18 @@ body{font-family: 'Roboto', sans-serif;}
 .login input{
   width:100%;
 }
+
+/* contact */
+.kontakt_box_all1{
+  display:block;
+}
+.kontakt_box_all2{
+  display:none;
+}
+.error
+{
+	text-align:right;
+	color:#900;
+	padding-right:12%;
+	font-size:11px;
+}
