@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Sty 2018, 11:35
+-- Czas generowania: 07 Sty 2018, 18:23
 -- Wersja serwera: 10.1.26-MariaDB
 -- Wersja PHP: 7.1.9
 
@@ -59,13 +59,6 @@ CREATE TABLE `photos` (
   `org` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Zrzut danych tabeli `photos`
---
-
-INSERT INTO `photos` (`id`, `hash`, `ext`, `size`, `org`) VALUES
-(1, '1513528476724204206_23021034', 'png', 444769, '4b311c2a5c4f6b0f98cdcb97fc492075.png');
-
 -- --------------------------------------------------------
 
 --
@@ -84,8 +77,9 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (1, 'Text 1', 'Name'),
-(2, 'Text 2', 'Introduction'),
-(3, 'Text 3', 'Txt');
+(2, 'Text 2', 'Lele'),
+(3, 'Text 3', 'Txt'),
+(4, 'Text 4', 'Lele');
 
 -- --------------------------------------------------------
 
@@ -103,7 +97,8 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `name`) VALUES
-(1, 'about');
+(1, 'about'),
+(2, 'about');
 
 -- --------------------------------------------------------
 
@@ -118,13 +113,6 @@ CREATE TABLE `slider_photos` (
   `active` varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Zrzut danych tabeli `slider_photos`
---
-
-INSERT INTO `slider_photos` (`id`, `photo_id`, `slider_id`, `active`) VALUES
-(1, 1, 1, '0');
-
 -- --------------------------------------------------------
 
 --
@@ -133,9 +121,16 @@ INSERT INTO `slider_photos` (`id`, `photo_id`, `slider_id`, `active`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `login` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
   `password` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`) VALUES
+(1, 'andrzej@gmail.com', '297b444b944c872f502aed17e494c26dd16c4760');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -203,31 +198,31 @@ ALTER TABLE `gallery_photo`
 -- AUTO_INCREMENT dla tabeli `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `slider_photos`
 --
 ALTER TABLE `slider_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
