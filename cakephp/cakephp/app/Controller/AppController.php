@@ -74,6 +74,4 @@ class AppController extends Controller {
     ));
     return $tmp;
   }
-
-
 }

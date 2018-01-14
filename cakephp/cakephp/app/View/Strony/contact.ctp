@@ -1,6 +1,6 @@
 <section class="contact_header" style="background-color:#ddd;">
   <div class="container">
-    <span style="text-align:center;"><h2>Kontakt</h2></span>
+    <span style="text-align:center;"><h2><?php echo $element['Settings'][4]['Settings']['value']; ?></h2></span>
   </div>
 </section>
 <section class="contact_map col-md-12" style="margin-top:10px;">
@@ -21,7 +21,7 @@
   				<div class="error err_c_email"></div>
         </div>
         <div class="contact_form_msg">
-  				<textarea class="col-md-12" id="c_text" placeholder="wiadomość"></textarea>
+  				<textarea class="col-md-12" style="padding:0;" id="c_text" placeholder="wiadomość"></textarea>
   				<div class="error err_c_text"></div>
         </div>
 				<input type="submit" class="contact_btn">

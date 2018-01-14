@@ -173,19 +173,8 @@ class AdminController extends AppController {
 
 	//START UPLOAD_TEXT
 		if(isset($_POST['text'])){
-			$data=$this->data;
-			$setting=array(
-				'id'=>$data['id'],
-				'name'=>$data['name'],
-				'value'=>trim($data['settings'])
-			);
-			$element['Settings'][$data['name']]=$setting['value'];
-			$this->Settings->save($setting);
-			$this->Session->setFlash('Dane zapisane');
-			$this->redirect(array('action'=>'about'));
+			$this->upload_text('about');
 		}
-
-
 	//END UPLOAD_TEXT
 		$element['Settings']=$this->get_settings();
 		$this->set('element',$element);
@@ -197,7 +186,10 @@ class AdminController extends AppController {
 	 }
 	public function contact() {
 	 $element = $tmp_element = array();
-
+	 if(isset($_POST['text'])){
+		 $this->upload_text('contact');
+	 }
+	 $element['Settings']=$this->get_settings();
 	 $this->set("element",$element);
 	 }
 	public function meh() {
@@ -254,59 +246,16 @@ class AdminController extends AppController {
 
 		return $return;
 	}
-
-	public function news_edit($id=0){
-		$element=$tmp=array();
-
-		if($this->request->is('post')){
-			$data=$this->data;
-
-			//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
-			$ret=$this->upload_photo($data['News']['Photo']);
-			if($ret){
-				//dodajemy photo_id to naszych danych z formularza edycji newsa.
-				$data['News']['photo_id']=$ret;
-			}else{
-				//jeśli się nie uda dodanie id od zdjęcia, czytaj zdjęcie się nie dodało dostajemy info, że zdjęcie się nie dodało
-				$this->Session->setFlash('Błąd przy dodawaniu zdjęcia');
-				//i wysyła nas do tablicy newsów...
-				$this->redirect(array('action'=>'news'));
-			}
-			//zapisujemy naszego newsa do tablicy news.
-			$this->News->save($data['News']);
-			//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
-			$this->Session->setFlash('Dane zapisane');
-			//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
-			$this->redirect(array('action'=>'news'));
-		}
-		//tworzymy defaultową tablicę $element['News'], do której będą pobierane dane z tablicy news
-		$element['News']=array(
-			'id'=>$id,
-			'title'=>'',
-			'description'=>'',
-			'Photo'=>''
+	public function upload_text($action=''){
+		$data=$this->data;
+		$setting=array(
+			'id'=>$data['id'],
+			'name'=>$data['name'],
+			'value'=>trim($data['settings'])
 		);
-		//jeśli id jest większe od zera to pobiera nam dane, jeśli jest równe 0 to powstanie nowy news
-		if($id>0){
-			$tmp['News']=$this->News->find('first',array(
-				'conditions'=>array(
-					'News.id'=>$id,
-					'News.active'=>1
-				)
-			));
-
-			//jeśli nie ma newsa, którego szukamy (np na 3 newsy ktoś własnoręcnie wpisał 2319748791249523358458328487):
-			if(!$tmp['News']){
-				//wywala komunikat o błędzie
-				$this->Session->setFlash('Nie znaleziono newsa');
-				//i odsyła nas do newsów.
-				$this->redirect(array('action'=>'news'));
-			}else{
-				$element['News']['title'] = $tmp['News']['News']['title'];
-				$element['News']['description'] = $tmp['News']['News']['description'];
-				$element['News']['Photo'] = $this->get_photo($tmp['News']['News']['photo_id']);
-			}
-		}
-		$this->set('element',$element);
+		$element['Settings'][$data['name']]=$setting['value'];
+		$this->Settings->save($setting);
+		$this->Session->setFlash('Dane zapisane');
+		$this->redirect(array('action'=>$action));
 	}
 }
