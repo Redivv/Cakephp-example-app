@@ -26,6 +26,7 @@ class AdminController extends AppController {
 		'Sliders',
 		'Galleries',
 		'Slider_photos',
+		'Gallery_photos',
 		'User'
 	);
 
@@ -108,7 +109,6 @@ class AdminController extends AppController {
 							'Slider_photos.photo_id'
 						)));
 						$element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);
-						//$this->dupcia($tmp['Photo_id'][0]['Slider_photos']['photo_id']);
 
 				for ($i=1; $i <=$slides_number ; $i++) {
 					$element['Photo'][$j-1][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
@@ -117,30 +117,28 @@ class AdminController extends AppController {
 
 				}
 			}
-			//$this->dupcia($element['Photo']);
 				//END SLIDER1! ---------------------------------------------------------------------------------------
 
  	//START UPLOAD_PHOTOS ------------------------------------------------------------------------
 		if((isset($_POST['photo'])) || (isset($_POST['delete']))){
 
 			$data=$this->data;
+			$photo=$_FILES['Photo'];
 			if(isset($_POST['delete'])){
 				$data['Photo']=array(
 					'id'=>$data['Slider_photos.id'],
 					'slider_id'=>$data['Slider_id'],
 					'active'=>0
 				);
-				//$this->dupcia($data['Slider_photos.id']);
 				$this->Slider_photos->save($data['Photo']);
 				//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
 				$this->Session->setFlash('usunięto slajd');
 				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
 				$this->redirect(array('action'=>'about'));
 			}else{
-				//$this->dupcia($data);
 				//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
-				$ret=$this->upload_photo($data['Photo']);
-				if(!$ret){
+				$ret=$this->upload_photo($photo);
+				if($ret['0']==0){
 					//jeśli się nie uda dodanie id od zdjęcia, czytaj zdjęcie się nie dodało dostajemy info, że zdjęcie się nie dodało
 					$this->Session->setFlash('Błąd przy dodawaniu zdjęcia');
 					//i wysyła nas do about...
@@ -152,13 +150,13 @@ class AdminController extends AppController {
 				if($data['id']>0){
 					$data['Photo']=array(
 						'id'=>$data['Slider_photos.id'],
-						'photo_id'=>$ret,
+						'photo_id'=>$ret[0],
 						'slider_id'=>$data['Slider_id']
 					);
 				}else{
 					$data['Photo']=array(
 						'id'=>0,
-						'photo_id'=>$ret,
+						'photo_id'=>$ret[0],
 						'slider_id'=>$data['Slider_id']
 					);
 				}
@@ -181,9 +179,27 @@ class AdminController extends AppController {
 	}
 	public function gallery() {
 	 $element = $tmp_element = array();
-
+	 if(isset($_FILES['Photos'])){
+		 $photos=$_FILES['Photos'];
+		 $ret=$this->upload_photo($photos);
+		 for ($i=0; $i<count($photos['name']) ; $i++){
+		 if($ret[$i]==0){
+			 //jeśli się nie uda dodanie id od zdjęcia, czytaj zdjęcie się nie dodało dostajemy info, że zdjęcie się nie dodało
+			 $this->Session->setFlash('Błąd przy dodawaniu zdjęcia nr '.($i+1));
+		 }else{
+			 $data['Gallery_photo']['photo_id'][$i]=$ret[$i];
+			 $data['Photo']=array(
+				 'id'=>0,
+				 'gallery_id'=>1,
+				 'photo_id'=>$ret[$i],
+			 );
+			 $this->Gallery_photos->save($data['Photo']);
+			 $this->Session->setFlash('Zdjęcie nr '.($i+1).' zostało zapisane.');
+		 }
+	 }
 	 $this->set("element",$element);
 	 }
+ }
 	public function contact() {
 	 $element = $tmp_element = array();
 	 if(isset($_POST['text'])){
@@ -201,49 +217,50 @@ class AdminController extends AppController {
 
 	 //upload_photo wykorzystuje $tmp_arr, które trzyma nasz plik, który wysłaliśmy
 	public function upload_photo($tmp_arr){
-		//używając dupci wyświetlają nam się informacje o tym zdjęciu.
-		//$this->dupcia($tmp_arr);
-		//tutaj mamy tymczasowe miejsce przechowywania pliku.
-		$tmp_file= $tmp_arr['tmp_name'];
-		//defautowo $returm jest puste, służy nam to walidacji.
-		$return=null;
-		//tu są dozwolone typy uploadowanych plików. Jeśli był by to plik np .php, albo gdyby podszywał się pod .jpg to nie został by wstawiony. Typ pliku można sprawdzić używając dupci.
-		$upload_valid_ext=array('image/jpeg','image/bmp','image/png');
-		//proces walidacji... jeśli typ się nie zgadza z $upload_valid_ext to nie przechodzi walidacji.
-		if(in_array($tmp_arr['type'],$upload_valid_ext)){
-			//proces walidacji... jeśli istnieje plik $tmp_file, czyli istnieje plik, który przenosimy.
-			if(is_uploaded_file($tmp_file)){
-				//rozbijamy nazwę pliku.rozszerzenie na nazwę pliku + rozszerzenie.
-				$explode_arr = explode('.',$tmp_arr['name']);
-				//ostatnie rozbite będzie rozszerzenie. Ktoś mogł nazwać plik: p.l.i.k.rozszerzenie, więc nie chcemy się pojebać
-				$ext=count($explode_arr)-1;
-				//otrzymujemy tutaj rozszerzenie, zmniejszamy je, żeby był lowercasem. rozszerzenie to ostatnia wartość tabeli $explode_arr
-				$ext=strtolower($explode_arr[$ext]);
-				//nadajemy plikowi nazwę, którą będzie mieć w folderze upload. Musi byc niepowtarzalna.
-				$hash=time().rand(1,999999999).'_'.rand(1,999999999);
-				//całkowita nazwa pliku to $hash + . + $ext.
-				$file=$hash.'.'.$ext;
-				//a dokładna ścieżka to $path, czyli ścieżka do Controller/upload/$file.
-				$path=WWW_ROOT.'upload/'.$file;
+		$count=count($tmp_arr['name']);
+		for($i=0;$i<$count;$i++){
+			//używając dupci wyświetlają nam się informacje o tym zdjęciu.
+			//tutaj mamy tymczasowe miejsce przechowywania pliku.
+			$tmp_file= $tmp_arr['tmp_name'][$i];
+			//defautowo $return jest puste, służy nam to walidacji.
+			$return[$i]=null;
+			//tu są dozwolone typy uploadowanych plików. Jeśli był by to plik np .php, albo gdyby podszywał się pod .jpg to nie został by wstawiony. Typ pliku można sprawdzić używając dupci.
+			$upload_valid_ext=array('image/jpeg','image/bmp','image/png');
+			//proces walidacji... jeśli typ się nie zgadza z $upload_valid_ext to nie przechodzi walidacji.
+			if(in_array($tmp_arr['type'][$i],$upload_valid_ext)){
+				//proces walidacji... jeśli istnieje plik $tmp_file, czyli istnieje plik, który przenosimy.
+				if(is_uploaded_file($tmp_file)){
+					//rozbijamy nazwę pliku.rozszerzenie na nazwę pliku + rozszerzenie.
+					$explode_arr = explode('.',$tmp_arr['name'][$i]);
+					//ostatnie rozbite będzie rozszerzenie. Ktoś mogł nazwać plik: p.l.i.k.rozszerzenie, więc nie chcemy się pojebać
+					$ext=count($explode_arr)-1;
+					//otrzymujemy tutaj rozszerzenie, zmniejszamy je, żeby był lowercasem. rozszerzenie to ostatnia wartość tabeli $explode_arr
+					$ext=strtolower($explode_arr[$ext]);
+					//nadajemy plikowi nazwę, którą będzie mieć w folderze upload. Musi byc niepowtarzalna.
+					$hash=time().rand(1,999999999).'_'.rand(1,999999999);
+					//całkowita nazwa pliku to $hash + . + $ext.
+					$file=$hash.'.'.$ext;
+					//a dokładna ścieżka to $path, czyli ścieżka do Controller/upload/$file.
+					$path=WWW_ROOT.'upload/'.$file;
 
-				//teraz przenosimy nasz plik z miejsca tymczasowego pobytu do ścieżki, którą stworzyliśmy.
-				move_uploaded_file($tmp_file,$path);
-				//tutaj zapisujemy wszystkie informacje w bazie danych `photos`:
-					//tworzymy arraya ze wszystkimi danymi
-				$photo=array(
-					'id'=>0,
-					'hash'=>$hash,
-					'ext'=>$ext,
-					'org'=>$tmp_arr['name'],
-					'size'=>$tmp_arr['size']
-				);
-					//zapisujemy w bazie danych (metoda Photos)
-				$this->Photos->save($photo);
-					//zwracamy id, żeby zapisać photo_id później.
-				return $this->Photos->id;
+					//teraz przenosimy nasz plik z miejsca tymczasowego pobytu do ścieżki, którą stworzyliśmy.
+					move_uploaded_file($tmp_file,$path);
+					//tutaj zapisujemy wszystkie informacje w bazie danych `photos`:
+						//tworzymy arraya ze wszystkimi danymi
+					$photo=array(
+						'id'=>0,
+						'hash'=>$hash,
+						'ext'=>$ext,
+						'org'=>$tmp_arr['name'][$i],
+						'size'=>$tmp_arr['size'][$i]
+					);
+						//zapisujemy w bazie danych (metoda Photos)
+					$this->Photos->save($photo);
+						//zwracamy id, żeby zapisać photo_id później.
+					$return[$i]=$this->Photos->id;
+				}
 			}
 		}
-
 		return $return;
 	}
 	public function upload_text($action=''){

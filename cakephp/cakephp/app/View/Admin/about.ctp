@@ -6,10 +6,10 @@
           echo '<img src="'.$element['Photo'][0][$i]['1'].'" width=100% >';
       ?>
       <form class="" action="" method="post" enctype="multipart/form-data" name="">
-        <input type="file" name="data[Photo]"/>
+        <input type="file" name="Photo[]"/>
         <input type="hidden" name="data[id]" value="<?php echo $element['Photo'][0][$i]['2']; ?>"/>
         <input type="hidden" name="data[Slider_photos.id]" value="<?php echo $element['Photo'][0][$i]['3']; ?>"/>
-
+        <input type="hidden" name="data[Slider_id]" value="1">
         <input type="submit" name="photo">
         <input type="submit" name="delete" value="X-del" style="float:right;">
         <BR/>
@@ -19,7 +19,7 @@
     <div class="" style="width:25%; float:left; border:1px solid #f00;">
         Dodaj zdjęcie:
       <form class="" action="" method="post" enctype="multipart/form-data" name="">
-        <input type="file" name="data[Photo]"/>
+        <input type="file" name="Photo[]"/>
         <input type="hidden" name="data[Slider_id]" value="1"/>
         <input type="hidden" name="data[id]" value="0"/>
 
@@ -62,7 +62,7 @@
           echo '<img src="'.$element['Photo'][1][$i]['1'].'" width=100% >';
       ?>
       <form class="" action="" method="post" enctype="multipart/form-data" name="">
-        <input type="file" name="data[Photo]"/>
+        <input type="file" name="Photo[]"/>
         <input type="hidden" name="data[id]" value="<?php echo $element['Photo'][1][$i]['2']; ?>"/>
         <input type="hidden" name="data[Slider_photos.id]" value="<?php echo $element['Photo'][1][$i]['3']; ?>"/>
 
@@ -75,7 +75,7 @@
     <div class="" style="width:25%; float:left; border:1px solid #f00;">
         Dodaj zdjęcie:
       <form class="" action="" method="post" enctype="multipart/form-data" name="">
-        <input type="file" name="data[Photo]"/>
+        <input type="file" name="Photo[]"/>
         <input type="hidden" name="data[Slider_id]" value="2"/>
         <input type="hidden" name="data[id]" value="0"/>
 
