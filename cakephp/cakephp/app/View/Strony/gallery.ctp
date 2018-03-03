@@ -1,1 +1,0 @@
-tu bydzie gallery

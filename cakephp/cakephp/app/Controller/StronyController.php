@@ -7,16 +7,9 @@
       'Settings',
       'Sliders',
       'Galleries',
-      'Slider_photos'
+      'Slider_photos',
+      'Gallery_photos'
   );
-
-   private function dupcia($data=''){
-   	 echo '<pre>';
-   	 var_dump($data);
-   	 echo '</pre>';
-   	 die();
-   }
-
 
   public function beforeFilter() {
     parent::beforeFilter();
@@ -83,13 +76,14 @@
     public function wesela(){
       $element = $tmp = array();
       $element['helper']['menu']='gallery';
-
+      $element['gallery']=$this->get_gallery_photos(1);
       $this->set("element",$element);
     }
 
     public function sesje(){
       $element = $tmp = array();
       $element['helper']['menu']='gallery';
+      $element['gallery']=$this->get_gallery_photos(2);
 
       $this->set("element",$element);
     }
@@ -97,6 +91,7 @@
     public function plenery(){
       $element = $tmp = array();
       $element['helper']['menu']='gallery';
+      $element['gallery']=$this->get_gallery_photos(3);
 
       $this->set("element",$element);
     }
@@ -112,6 +107,26 @@
 
       $element['Settings']=$this->get_settings();
       $this->set("element",$element);
+  }
+
+  private function get_gallery_photos($gallery_id=''){
+    $gallery=null;
+    $photo_id=$this->Gallery_photos->find(
+      'all',
+      array(
+        'conditions'=>array(
+          'Gallery_photos.gallery_id'=>$gallery_id,
+          'Gallery_photos.active'=>1
+        ),
+        'fields'=>array(
+          'Gallery_photos.photo_id'
+        )
+      )
+    );
+    for ($i=0; $i<count($photo_id) ; $i++) {
+      $gallery[$i]=$this->get_photo($photo_id[$i]['Gallery_photos']['photo_id']);
+    }
+    return $gallery;
   }
 }
 ?>

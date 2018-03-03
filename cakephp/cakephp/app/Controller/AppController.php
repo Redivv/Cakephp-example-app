@@ -74,4 +74,10 @@ class AppController extends Controller {
     ));
     return $tmp;
   }
+  public function dupcia($data=''){
+	 echo '<pre>';
+	 var_dump($data);
+	 echo '</pre>';
+	 die();
+ }
 }
