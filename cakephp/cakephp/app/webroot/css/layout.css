@@ -85,7 +85,7 @@ body{font-family: 'Roboto', sans-serif;}
 }
 
 .page_logo_link{
-	font-size:42px;
+	font-size:36px;
 	width:230px;
 	font-family: 'Indie Flower', cursive;
 	margin-left:auto;
@@ -106,7 +106,7 @@ body{font-family: 'Roboto', sans-serif;}
 	float:left;
 	font-family: 'Josefin Sans', sans-serif;
 	text-align:center;
-	font-size:17px;
+	font-size:14px;
   font-weight: bold;
 	text-transform:uppercase;
 	display:block;
@@ -130,7 +130,7 @@ body{font-family: 'Roboto', sans-serif;}
 
 .footer_mr{
 	height:25px;
-	background-color:rgba(68, 68, 68, 0.7);
+	background-color:#333333;;
   position: absolute !important;
 	text-align:center;
 	font-size:17px;
@@ -140,7 +140,21 @@ body{font-family: 'Roboto', sans-serif;}
   display: block;
 	font-family: 'Josefin Sans', sans-serif;
 }
-
+.contact_header .contact_strip{
+  line-height: 100px;
+  font-family: 'Indie Flower', sans-serif;
+  font-size: 35px;
+  text-align: center;
+}
+.small_box{
+  width:300px;
+ margin: 10px;
+}
+.small_box_in{
+  padding: 5px !important;
+  border-radius: :50px !important;
+  border: 2px solid #cccccc;
+}
 .slider{
   height: 300px;
   width: 100%;
@@ -151,10 +165,21 @@ body{font-family: 'Roboto', sans-serif;}
 .about .owl-carousel{
 
 }
+.owl-carousel .item_img{
+  object-fit:contain ;
+}
 .about .item{
-  background-color: #f0f;
-  border-radius: 15px;
+  -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
+  clip-path: inset(0% 0% 0% 0% round 25px);
   width:100%;
+  height:400px;
+  overflow:hidden;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.about .item:hover{
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
 }
 .about .item:after {
   content: "";
@@ -165,6 +190,10 @@ body{font-family: 'Roboto', sans-serif;}
 .about .name, .introduction{
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
+  width:800px;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 .about .text{
   text-align: center;
@@ -179,7 +208,28 @@ body{font-family: 'Roboto', sans-serif;}
 }
 .about .photo-box{
   width:60%;
-  margin-left: 20%;
+  margin-left: 25%;
+  overflow: hidden;
+}
+.about .photo-box .photo{
+  width:400px;
+  height:300px;
+  float: left;
+  overflow: hidden;
+  margin: 20px;
+}
+.about .photo-box .photo_img{
+  width:100%;
+  height: 100%;
+  -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
+  clip-path: inset(0% 0% 0% 0% round 25px);
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  object-fit: cover;
+}
+.about .photo-box .photo_img:hover{
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
 }
 .login input{
   width:100%;
