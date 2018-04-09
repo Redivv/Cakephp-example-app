@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 07 Sty 2018, 18:23
+-- Czas generowania: 09 Kwi 2018, 21:11
 -- Wersja serwera: 10.1.26-MariaDB
 -- Wersja PHP: 7.1.9
 
@@ -25,24 +25,41 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `galleries`
+-- Struktura tabeli dla tabeli `folders`
 --
 
-CREATE TABLE `galleries` (
+CREATE TABLE `folders` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `gallery_id` int(11) NOT NULL,
+  `thumbnail` varchar(250) NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `gallery_photo`
+-- Struktura tabeli dla tabeli `folder_photos`
 --
 
-CREATE TABLE `gallery_photo` (
+CREATE TABLE `folder_photos` (
   `id` int(11) NOT NULL,
+  `folder_id` int(11) NOT NULL,
   `photo_id` int(11) NOT NULL,
-  `gallery_id` int(11) NOT NULL
+  `active` varchar(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `galleries`
+--
+
+CREATE TABLE `galleries` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -79,7 +96,8 @@ INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (1, 'Text 1', 'Name'),
 (2, 'Text 2', 'Lele'),
 (3, 'Text 3', 'Txt'),
-(4, 'Text 4', 'Lele');
+(4, 'Text 4', 'kk'),
+(5, 'Text 5', 'dsa');
 
 -- --------------------------------------------------------
 
@@ -137,15 +155,21 @@ INSERT INTO `users` (`id`, `email`, `password`) VALUES
 --
 
 --
--- Indexes for table `galleries`
+-- Indexes for table `folders`
 --
-ALTER TABLE `galleries`
+ALTER TABLE `folders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `gallery_photo`
+-- Indexes for table `folder_photos`
 --
-ALTER TABLE `gallery_photo`
+ALTER TABLE `folder_photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -183,15 +207,21 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `galleries`
+-- AUTO_INCREMENT dla tabeli `folders`
 --
-ALTER TABLE `galleries`
+ALTER TABLE `folders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `gallery_photo`
+-- AUTO_INCREMENT dla tabeli `folder_photos`
 --
-ALTER TABLE `gallery_photo`
+ALTER TABLE `folder_photos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT dla tabeli `galleries`
+--
+ALTER TABLE `galleries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -204,7 +234,7 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT dla tabeli `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `sliders`

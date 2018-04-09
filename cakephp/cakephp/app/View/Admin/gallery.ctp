@@ -6,8 +6,8 @@
     <form class="" action="" method="post" enctype="multipart/form-data" name="">
       <input type="file" name="Photo[]"/>
       <input type="hidden" name="data[id]" value="<?php echo $element['id'][$i]; ?>"/>
-      <input type="hidden" name="data[Gallery_photos.id]" value="<?php echo $element['Gallery_photos.id'][$i]; ?>"/>
-      <input type="hidden" name="data[Gallery_id]" value="1">
+      <input type="hidden" name="data[Folder_photos.id]" value="<?php echo $element['Folder_photos.id'][$i]; ?>"/>
+      <input type="hidden" name="data[Folder_id]" value="<?php echo $_GET['id']; ?>">
       <input type="submit" name="photo">
       <input type="submit" name="delete" value="X-del" style="float:right;">
       <BR/>

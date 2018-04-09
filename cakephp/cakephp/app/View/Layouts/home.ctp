@@ -14,7 +14,6 @@
 </head>
 
 <body class="background_home_img">
-	
 			<?php echo $this->element('header'); ?>
 </body>
 </html>

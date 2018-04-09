@@ -7,6 +7,7 @@
       'Settings',
       'Sliders',
       'Galleries',
+      'Folders',
       'Slider_photos',
       'Gallery_photos'
   );

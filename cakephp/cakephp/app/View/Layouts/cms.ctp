@@ -17,7 +17,6 @@
 			<?php echo $this->fetch('content'); ?>
 			<div class="clearfix"></div>
 		</div>
-
-
 	</body>
+	<?php echo $this->Html->script('popup.js');?>
 </html>
