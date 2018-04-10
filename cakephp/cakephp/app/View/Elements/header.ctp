@@ -14,12 +14,11 @@
 
                 <!-- menu slide -->
                 <div class="slide-menu m-t-20">
-                  <a href="/cakephp/strony/wesela" class="button anim_short">Wesela</a>
-                  <a href="/cakephp/strony/plenery" class="button anim_short">Plenery</a>
-                  <a href="/cakephp/strony/sesje" class="button anim_short" style="border:0 !important;">Sesje</a> <!-- ostatni div bez borderu -->
+                  <?php for ($i=1; $i<count($galleries); $i++){
+                    echo'<a href="/cakephp/strony/gallery?id='.$galleries[$i]['id'].'" class="button anim_short">'.$galleries[$i]['name'].'</a>';
+                  }echo'<a href="/cakephp/strony/gallery?id='.$galleries[count($galleries)]['id'].'" class="button anim_short">'.$galleries[count($galleries)]['name'].'</a>';?>
                 </div>
                 <!-- menu slide -->
-
               </div>
               <a href="/cakephp/strony/meh" class="col-md-1 col-sm-2 black col-xs-3 menu_box anim_short">coś coś<div class="strip anim_short"></div></a>
               <a href="/cakephp/strony/contact" class="col-md-1 col-sm-2 black col-xs-3 menu_box anim_short">Kontakt<div class="strip anim_short"></div></a>
