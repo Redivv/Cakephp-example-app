@@ -23,8 +23,8 @@
 <section class="folders">
   <?php if(isset($element['Folders'])){for ($i=1; $i<=count($element['Folders']) ; $i++) {?>
     <div class="folders_folder">
-      <a href="/cakephp/strony/folder?id=<?php echo $element['Folders'][$i]['id']; ?>"><img src="/cakephp/upload/<?php echo $element['Folders'][$i]['thumbnail'];?> " class="folder_thumbnail"></a>
-      <div class="folder_title"><?php echo $element['Folders'][$i]['name']; ?></div>
+      <a href="/sites/folder?id=<?php echo $element['Folders'][$i]['id']; ?>"><?php if(!($element['Folders'][$i]['thumbnail'] == null)){echo '<img src="/upload/'.$element['Folders'][$i]['thumbnail'].'" class="folder_thumbnail">';}?>
+      <div class="folder_title"><?php echo $element['Folders'][$i]['name']; ?></div></a>
     </div>
   <?php }} ?>
 </section>

@@ -18,7 +18,7 @@ Ustawienia Folderu
     <input type="text" name="name" value="<?php echo $element['folder']['name']; ?>">
     <textarea name="description" placeholder="Opis" ><?php echo $element['folder']['description']; ?></textarea><br>
     <label>Miniaturka</label>
-    <img src="/cakephp/upload/<?php echo $element['folder']['thumbnail'];?> " class="folder_thumbnail">
+    <?php if(!($element['folder']['thumbnail'] == null)){echo'<img src="/upload/'.$element['folder']['thumbnail'].'" class="folder_thumbnail">';}?>
     <input type="file"  name="thumbnail[]">
     <input type="submit" name="folder_form">
   </form>

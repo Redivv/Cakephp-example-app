@@ -40,8 +40,8 @@
 <section class="folders">
   <?php if(isset($element['Folders'])){for ($i=1; $i<=count($element['Folders']) ; $i++) {?>
     <div class="folders_folder">
-      <a href="/cakephp/admin/folder_edit?id=<?php echo $element['Folders'][$i]['id']; ?>"><img src="/cakephp/upload/<?php echo $element['Folders'][$i]['thumbnail'];?> " class="folder_thumbnail"></a>
-      <div class="folder_title"><?php echo $element['Folders'][$i]['name']; ?></div>
+      <a href="/admin/folder_edit?id=<?php echo $element['Folders'][$i]['id']; ?>"><?php if(!($element['Folders'][$i]['thumbnail'] == null)){echo '<img src="/upload/'.$element['Folders'][$i]['thumbnail'].'" class="folder_thumbnail">';}?>
+      <div class="folder_title"><?php echo $element['Folders'][$i]['name']; ?></div></a>
       <form class="" action="" method="post">
         <input type="hidden" name="folder_id" value="<?php echo $element['Folders'][$i]['id']; ?>">
         <input type="submit" name="delete_folder" value="Usuń">

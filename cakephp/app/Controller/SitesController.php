@@ -1,7 +1,7 @@
 <?php
   App::uses('AppController', 'Controller');
 
-  class StronyController extends AppController {
+  class SitesController extends AppController {
     public $uses = array(
       'Photos',
       'Settings',

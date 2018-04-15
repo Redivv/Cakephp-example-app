@@ -1,8 +1,8 @@
-<a href="/cakephp/admin/dashboard">dashboard</a>
-<a href="/cakephp/admin/about">about</a>
-<a href="/cakephp/admin/gallery_edit?id=1">galeria</a>
-<a href="/cakephp/admin/meh">cośtam</a>
-<a href="/cakephp/admin/contact">kontakt</a>
+<a href="/admin/dashboard">dashboard</a>
+<a href="/admin/about">about</a>
+<a href="/admin/gallery_edit?id=1">galeria</a>
+<a href="/admin/meh">cośtam</a>
+<a href="/admin/contact">kontakt</a>
 <a href="#" onclick="box()">Dodaj nową galerie</a>
 <!-- wyskakujące okienko -->
 <div id="light" class="white_content">
@@ -14,5 +14,5 @@
 </div>
 <!-- ciemne tło za oknem -->
 <div id="fade" class="black_overlay"></div>
-<a href="/cakephp/admin/logout">Wyloguj</a>
+<a href="/admin/logout">Wyloguj</a>
 <div class="clearfix"></div>

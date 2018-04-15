@@ -253,6 +253,7 @@ class AdminController extends AppController {
 				$this->Session->setFlash('Podaj nazwę folderu');
 			}else{
 				$thumbnail=$this->upload_photo($_FILES['thumbnail']);
+				if(!(isset($thumbnail['hash']))){$thumbnail['hash']='';}
 				$folder=array(
 					'id' 					=>	0,
 					'name'				=>	$_POST['name'],
@@ -315,6 +316,7 @@ class AdminController extends AppController {
 				$this->Session->setFlash('Podaj nazwę folderu');
 			}else{
 				$thumbnail=$this->upload_photo($_FILES['thumbnail']);
+				if(!(isset($thumbnail['hash']))){$thumbnail['hash']='';}
 				$folder=array(
 					'id' 					=>	$_GET['id'],
 					'name'				=>	$_POST['name'],
@@ -337,7 +339,7 @@ class AdminController extends AppController {
 					'id'=>'DESC'
 				)));
 				$folder='folder_edit?id='.$tmp['Folders']['id'];
-		 $element=$this->upload_gallery($_GET['id'],$folder);
+		 $element=$this->upload_gallery($_GET['id'],'folder_edit?id='.$_GET['id']);
 		 //znajduję aktywne foldery
 		$folders=$this->get_folders();
 		//tworzę tablice poprawnych id folderu

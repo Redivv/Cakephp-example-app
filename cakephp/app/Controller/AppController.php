@@ -40,7 +40,7 @@ class AppController extends Controller {
       ),
     'loginRedirect' => array('controller' => 'admin', 'action' => 'index'),       // brak sesji użytkownika = wysłanie na index
     'loginAction'   => array('controller' => 'admin', 'action' => 'index'),
-    'logoutRedirect'=> array('controller' => 'admin', 'action' => 'index'),       // wylogowanie = wysłanie na index
+    'logoutRedirect'=> array('controller' => 'sites', 'action' => 'index'),       // wylogowanie = wysłanie na index
     'sessionKey'    => 'User'
   ));
   /*public function beforeFilter(){
@@ -62,7 +62,7 @@ class AppController extends Controller {
         'Photos.id'=>$id
       )));
     if($tmp){
-      return '/cakephp/upload/'.$tmp['Photos']['hash'].'.'.$tmp['Photos']['ext'];
+      return '/upload/'.$tmp['Photos']['hash'].'.'.$tmp['Photos']['ext'];
     }else{return '';}
   }
   public function get_settings(){
