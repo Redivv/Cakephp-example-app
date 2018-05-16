@@ -18,5 +18,6 @@
 			<div class="clearfix"></div>
 		</div>
 	</body>
+	<?php echo $this->Html->script('jquery.js');?>
 	<?php echo $this->Html->script('popup.js');?>
 </html>

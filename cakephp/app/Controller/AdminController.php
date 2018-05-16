@@ -502,7 +502,6 @@ class AdminController extends AppController {
 		//zmiana zdjęcia lub ukrywanie go
 		if((isset($_POST['photo'])) || (isset($_POST['delete']))){
 			$data=$this->data;
-			$photo=$_FILES['Photo'];
 			if(isset($_POST['delete'])){
 				$data['Photo']=array(
 					'id'=>$data['Folder_photos.id'],
@@ -514,6 +513,7 @@ class AdminController extends AppController {
 				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
 				$this->redirect(array('action'=>$folder));
 			}else{
+				$photo=$_FILES['Photo'];
 				//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
 				$ret=$this->upload_photo($photo);
 				if($ret['0']==0){

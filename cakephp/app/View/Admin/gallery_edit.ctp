@@ -28,7 +28,7 @@
 <section class="popup window">
   <a href="#" onclick="box2();">Dodaj Folder</a>
   <div id="light2" class="white_content">
-    <div class="exit_box"><input type="button" class="exit" onclick="close2()" value="Zamknij"></div>
+    <div class="exit_box"><input type="button" class="exit" onclick="close2()" value="Zamknij" style="float:right;"></div>
    <form class="" method="post" enctype="multipart/form-data">
      <input type="text" name="name" value="" placeholder="Nazwa"/>
      <input type="file"  name="thumbnail[]">

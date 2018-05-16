@@ -11,7 +11,8 @@
         <input type="hidden" name="data[Slider_photos.id]" value="<?php echo $element['Photo'][0][$i]['3']; ?>"/>
         <input type="hidden" name="data[Slider_id]" value="1">
         <input type="submit" name="photo">
-        <input type="submit" name="delete" value="X-del" style="float:right;">
+        <input class="x-del" type="button" value="Usuń Zdjęcie" data-asoc="<?php echo $element['Photo'][0][$i]['3']; ?>" data-id="1" style="float:right;">
+        <!--<input type="submit" name="delete" value="X-del" style="float:right;">-->
         <BR/>
       </form>
 
@@ -28,6 +29,16 @@
 
     </div>
     <div class="clearfix"></div>
+    <!-- wyskakujące okienko z potwiedzeniem usunięcia -->
+      <div id="light3" class="white_content">
+        <h3 style="text-align:center;">Czy na pewno chcesz usunąć zdjęcie?</h3>
+       <form class="delete_photo" method="post">
+         <input type="submit" name="delete" value="Tak" style="float:right;">
+         <input type="button" value="Nie" onclick="close3()">
+       </form>
+      </div>
+      <div id="fade3" class="black_overlay"></div>
+    <!-- -->
 </section>
 <section class="name_about_admin">
   Tekst 1
@@ -65,9 +76,10 @@
         <input type="file" name="Photo[]"/>
         <input type="hidden" name="data[id]" value="<?php echo $element['Photo'][1][$i]['2']; ?>"/>
         <input type="hidden" name="data[Slider_photos.id]" value="<?php echo $element['Photo'][1][$i]['3']; ?>"/>
+        <input type="hidden" name="data[Slider_id]" value="2">
 
         <input type="submit" name="photo">
-        <input type="submit" name="delete" value="X-del" style="float:right;">
+        <input class="x-del" type="button" value="Usuń Zdjęcie" data-asoc="<?php echo $element['Photo'][1][$i]['3']; ?>" data-id="2" style="float:right;">
         <BR/>
       </form>
 

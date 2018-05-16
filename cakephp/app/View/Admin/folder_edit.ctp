@@ -37,12 +37,22 @@ Zdjęcia
         <input type="hidden" name="data[Folder_photos.id]" value="<?php echo $element['Folder_photos.id'][$i]; ?>"/>
         <input type="hidden" name="data[Folder_id]" value="<?php echo $_GET['id']; ?>">
         <input type="submit" name="photo">
-        <input type="submit" name="delete" value="X-del" style="float:right;">
+        <input class="x-del_folder" type="button" value="Usuń Zdjęcie" data-asoc="<?php echo $element['Folder_photos.id'][$i]; ?>" data-id="<?php echo $_GET['id']; ?>" style="float:right;">
         <BR/>
       </form>
 
     </div><?php } ?>
     <div class="clearfix"><br>
+    <!-- wyskakujące okienko z potwiedzeniem usunięcia -->
+      <div id="light3" class="white_content">
+        <h3 style="text-align:center;">Czy na pewno chcesz usunąć zdjęcie?</h3>
+       <form class="delete_photo" method="post">
+         <input type="submit" name="delete" value="Tak" style="float:right;">
+         <input type="button" value="Nie" onclick="close3()">
+       </form>
+      </div>
+      <div id="fade3" class="black_overlay"></div>
+    <!-- -->
   <form method="post" enctype="multipart/form-data">
     <input type="file" name="Photos[]" multiple>
     <input type="submit" name="" value="Upload">
