@@ -37,20 +37,7 @@ class AdminController extends AppController {
 		$this->Auth->allow('index');					// funkcja index jest dostępna dla niezalogowanych
 		//pobieram obecną stronę
 		$action=$this->action;
-		$galleries=$this->Galleries->find(
-			'first',
-			array(
-				'fields'=>array(
-					'Galleries.id',
-				),
-				'order'=>array(
-					'id'=>'DESC'
-				)));
 		//tworze zmienną która przechowuje id nowej galerii
-		if (isset($galleries['Galleries'])) {
-			$new_gallery_id=$galleries['Galleries']['id']+1;
-			$new_gallery='gallery_edit?id='.$new_gallery_id;
-		}
 
 		//pobieramy liczbę i nazwy galerii
 		$galleries=$this->get_galleries();
@@ -67,6 +54,8 @@ class AdminController extends AppController {
 					'name'=>	$_POST['name']
 				);
 			$this->Galleries->save($gallery);
+			$new_id=$this->Galleries->id;
+			$new_gallery='gallery_edit?id='.$new_id;
 			$this->Session->setFlash('Utworzono Galerie');
 			$this->redirect(array('action'=>$new_gallery));
 			}
@@ -323,6 +312,22 @@ class AdminController extends AppController {
 		$this->set('element',$element);
 	}
 	public function gallery_edit(){
+		if(isset($_POST['Folder'])){
+			if(trim($_POST['name']==null)){
+				$this->Session->setFlash('Podaj nazwę folderu');
+			}else{
+				$thumbnail=$this->upload_photo($_FILES['thumbnail']);
+				if(!(isset($thumbnail['hash']))){$thumbnail['hash']='';}
+				$folder=array(
+					'id' 					=>	0,
+					'name'				=>	$_POST['name'],
+					'gallery_id'	=>	$_GET['id'],
+					'thumbnail'		=>	$thumbnail['hash']
+				);
+				$this->Folders->save($folder);
+				$this->Session->setFlash('Utworzono folder');
+			}
+	}
 		//unikam problemów od strony klienta przy złym id galerii
 		$element=array();
 		if (isset($_POST['delete_folder'])) {
@@ -331,6 +336,7 @@ class AdminController extends AppController {
 				'active'=>0
 			);
 			$this->Folders->save($folder);
+			$this->Session->setFlash('Usunieto Folder');
 		}
 		//pobieram dane o folderach z odpowiednim gallery_id
 		$folders=$this->Folders->find(
@@ -360,25 +366,6 @@ class AdminController extends AppController {
 					'name'	=>	$_POST['name']
 				);
 				$this->Galleries->save($gallery);
-			}
-		}
-		if(isset($_POST['Folder'])){
-			if(trim($_POST['name']==null)){
-				$this->Session->setFlash('Podaj nazwę folderu');
-			}else{
-				$thumbnail=$this->upload_photo($_FILES['thumbnail']);
-				if(!(isset($thumbnail['hash']))){$thumbnail['hash']='';}
-				$folder=array(
-					'id' 					=>	0,
-					'name'				=>	$_POST['name'],
-					'gallery_id'	=>	$_GET['id'],
-					'thumbnail'		=>	$thumbnail['hash']
-				);
-				$this->Folders->save($folder);
-				$folders=$this->Folders->id;
-				$new_folder='folder_edit?id='.$folders;
-				$this->Session->setFlash('Utworzono folder');
-				$this->redirect(array('action'=>$new_folder));
 			}
 		}
 		//znajduję aktywne galerie
