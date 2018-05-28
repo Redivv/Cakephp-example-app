@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="page_logo">
             <a href="/sites/index" class="page_logo_link black" style="text-decoration:none;"><?php echo $element['Settings'][7]['Settings']['value']; ?></a>
-          </div>
+          </div>   
         </div>
       </div>
       <div class="row">

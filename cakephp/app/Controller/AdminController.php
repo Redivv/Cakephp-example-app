@@ -87,12 +87,18 @@ class AdminController extends AppController {
 			}
 		}
 		// DODAWNIE NOWEGO USERA //
-		/*if($this->request->is('post'))​​{
-			$data​​=​​$this->data;
-			$this->User->save($data['User']);
-			echo​​’Dodano’;
+		/*if($this->request->is('post')){
+			$data = $this->data;
+			$User=array(
+				'id' => '0',
+				'email' => $data['User']['email'],
+				'password' => $data['User']['password'],
+			);
+			$this->User->save($User);
+			$this->Session->setFlash('Dodano użytkownika');
+			$this->redirect(array('action'=>'index'));
 			die();
-		*/
+		}*/
 }
 
 	public function dashboard(){
@@ -528,7 +534,7 @@ class AdminController extends AppController {
 	 $element['Settings']=$this->get_settings();
 	 $this->set("element",$element);
 	 }
-	public function meh() {
+	public function recommend() {
 	 $element = $tmp_element = array();
 
 	 $this->set("element",$element);
