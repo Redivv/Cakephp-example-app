@@ -29,6 +29,12 @@
   .tel_box, .mail_box{
     text-align: center;
   }
+  .folders_folder{
+    width:30%;
+    margin-left:1.5%;
+    margin-right:1.5%;
+    height: 340px;
+  }
 }
 
 
@@ -58,6 +64,12 @@
   }
   .tel_box, .mail_box{
     text-align: center;
+  }
+  .folders_folder{
+    width:30%;
+    margin-left:1.5%;
+    margin-right:1.5%;
+    height: 340px;
   }
 }
 
@@ -89,6 +101,12 @@
   .tel_box, .mail_box{
     text-align: left;
   }
+  .folders_folder{
+    width:30%;
+    margin-left:1.5%;
+    margin-right:1.5%;
+    height: 340px;
+  }
 }
 
 
@@ -118,5 +136,14 @@
   }
   .tel_box, .mail_box{
     text-align: left;
+  }
+  .folders_folder{
+    width:30%;
+    margin-left:1.5%;
+    margin-right:1.5%;
+    height: 390px;
+  }
+  .folder_thumbnail{
+    height: 350px;
   }
 }

@@ -159,10 +159,9 @@ body{font-family: 'Roboto', sans-serif;}
 .footer_mr{
 	height:25px;
 	background-color:#333333;;
-  position: absolute !important;
+  position: absolute;
 	text-align:center;
 	font-size:17px;
-
   left:0px; right:0px;
   line-height:25px;
   display: block;
@@ -298,12 +297,9 @@ body{font-family: 'Roboto', sans-serif;}
   margin-left:10%;
 }
 .folders_folder{
-  display: inline-block;
-  margin-top:20px;
-  width: 33%;
-  height: 250px;
-  padding-left:40px;
-  padding-right:40px;
+  display:block;
+  float:left;
+  margin-bottom:20px;
 }
 .folder_thumbnail{
   display: block;
