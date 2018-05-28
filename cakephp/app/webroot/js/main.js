@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	main();
 	listener_contact();
-	$('.owl-carousel').owlCarousel({
+	$('#owl-about').owlCarousel({
 	    loop:true,
 	    margin:20,
 	    nav:false,
@@ -9,11 +9,22 @@ $(document).ready(function(){
 	        0:{
 	            items:2
 	        },
-	        600:{
+	        810:{
 	            items:3
 	        },
-	        1000:{
+	        1250:{
 	            items:4
+	        }
+	    }
+	});
+	$('#owl-index').owlCarousel({
+	    loop:true,
+	    margin:0,
+	    nav:true,
+			navText:["<i class='fas fa-arrow-left'></i>","<i class='fas fa-arrow-right'></i>"],
+	    responsive:{
+	        0:{
+	            items:1
 	        }
 	    }
 	});

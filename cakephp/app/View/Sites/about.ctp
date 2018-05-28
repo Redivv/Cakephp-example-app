@@ -1,6 +1,6 @@
 <section class="about">
 
-      <div class="owl-carousel owl-theme p-r-15 p-l-15">
+      <div id="owl-about" class="owl-carousel owl-theme p-r-15 p-l-15">
         <?php for ($i=1; $i<=$element['Slider'][0]['number'] ; $i++) {?>
           <div class="item anim"><img class="item_img" src="<?php echo $element['Photo'][0][$i][1];?>"></div>
         <?php }?>

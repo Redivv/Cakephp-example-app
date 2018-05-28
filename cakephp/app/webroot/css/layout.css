@@ -12,7 +12,7 @@ a{text-decoration: none;}
 .white{color:rgba(255, 255, 255, 1) !important;}
 .black{color:rgba(0, 0, 0, 1) !important;}
 .non_deco{text-decoration:none !important;}
-.box_shadow{-webkit-box-shadow: 1px 1px 5px 0 #000;box-shadow: 1px 1px 5px 0 #000;}
+.box_shadow{-webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 1);box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 1);}
 
 	/* fonts */
 
@@ -38,11 +38,7 @@ body{font-family: 'Roboto', sans-serif;}
 
 /*** Menu + Home ***/
 
-.background_home_img{
-
-}
-
-.header{
+.page_header{
 	width:99%;
 	padding:0px 20px;
 }
@@ -50,14 +46,14 @@ body{font-family: 'Roboto', sans-serif;}
 	padding:32px 0 34px 0;
 }
 
-.header #gallery:hover{
+.page_header #gallery:hover{
   border:none;
 }
-.header #gallery:hover .slide-menu{
+.page_header #gallery:hover .slide-menu{
  display: block;
 
 }
-.header .slide-menu{
+.page_header .slide-menu{
   width: 120px;
   display: none;
   background-color:rgba(0,0,0, 0.8);
@@ -66,10 +62,10 @@ body{font-family: 'Roboto', sans-serif;}
   position: absolute;
   z-index: 100000000000000000000000000001;
 }
-.header .slide-menu:hover{
+.page_header .slide-menu:hover{
   display: none;
 }
-.header .slide-menu .button{
+.page_header .slide-menu .button{
   border-bottom: 1px solid #bc9774;
   padding-bottom: 14px;
   padding-top: 15px;
@@ -80,7 +76,7 @@ body{font-family: 'Roboto', sans-serif;}
   font-family: 'Indie Flower', sans-serif;
   text-transform: none;
 }
-.header .slide-menu .button:hover{
+.page_header .slide-menu .button:hover{
   color:#bc9774;
 }
 
@@ -94,7 +90,7 @@ body{font-family: 'Roboto', sans-serif;}
 }
 .page_logo_link:hover{
 	cursor:pointer;
-	color:white;
+	color:#ffffff;
 }
 
 .page_menu{
@@ -125,9 +121,31 @@ body{font-family: 'Roboto', sans-serif;}
   color:#fff;
 }
 .background_home_img{
-	background-image:url('../img/background.jpg')
+  width:100%;
+  height: 100vh;
+  z-index: 1000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
 }
-
+#owl-index .owl-prev{
+  position: absolute;
+  z-index: 1001;
+  left: 3%;
+  top:45vh;
+}
+#owl-index .owl-next{
+  position: absolute;
+  z-index: 1001;
+  right: 3%;
+  top:45vh;
+}
+#owl-index .owl-dots{
+  display: none !important;
+}
+#owl-index .owl-nav{
+  margin: 0px;
+}
 .footer_mr{
 	height:25px;
 	background-color:#333333;;
@@ -146,27 +164,40 @@ body{font-family: 'Roboto', sans-serif;}
   font-size: 35px;
   text-align: center;
 }
-.small_box{
-  width:300px;
- margin: 10px;
-}
 .small_box_in{
-  padding: 5px !important;
-  border-radius: :50px !important;
+  padding: 5px;
+  border-radius:5px;
   border: 2px solid #cccccc;
+  width:50%;
 }
-.slider{
-  height: 300px;
-  width: 100%;
-  background-color: #f00;
+.message{
+  width:100%;
 }
+.contact_btn{
+  border-radius:5px;
+  width:150px;
+  height:60px;
+  float:right;
+  margin-right:90px;
+  background-color: #ddd;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20px;
+}
+.tel_box, .mail_box{
+  color:#000000;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20px;
+}
+
 
 /* about */
 .about .owl-carousel{
 
 }
 .owl-carousel .item_img{
-  object-fit:contain ;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 .about .item{
   -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
@@ -190,15 +221,14 @@ body{font-family: 'Roboto', sans-serif;}
 .about .name, .introduction{
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
-  width:800px;
   margin-left: auto;
   margin-right: auto;
 
 }
 .about .text{
   text-align: center;
-  padding-left: 250px;
-  padding-right: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* login */
@@ -238,6 +268,7 @@ body{font-family: 'Roboto', sans-serif;}
 /* contact */
 .kontakt_box_all1{
   display:block;
+  height: 178px;
 }
 .kontakt_box_all2{
   display:none;
@@ -249,3 +280,43 @@ body{font-family: 'Roboto', sans-serif;}
 	padding-right:12%;
 	font-size:11px;
 }
+
+
+/* start galery */
+.folders_box{
+  width:80%;
+  margin-left:10%;
+}
+.folders_folder{
+  display: inline-block;
+  margin-top:20px;
+  width: 33%;
+  height: 250px;
+  padding-left:40px;
+  padding-right:40px;
+}
+.folder_thumbnail{
+  display: block;
+  width: 100%;
+  height:300px;
+  object-fit: cover;
+  -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
+  clip-path: inset(0% 0% 0% 0% round 25px);
+  overflow: hidden;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%)
+}
+.folder_thumbnail:hover{
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%)
+}
+.folder_title{
+  margin-top: 5px;
+  color:#000000;
+  font-size:25px;
+  width:100%;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+/* end galery */

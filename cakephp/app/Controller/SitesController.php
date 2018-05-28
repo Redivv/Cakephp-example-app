@@ -22,16 +22,56 @@
 
 
   public function index(){
-    $element = $tmp = array();
-    $element['helper']['menu']='index';
     $this->layout='home';
+    $element = $tmp = array();
+    //START SLIDER1!  ---------------------------------------------------------------
+      $tmp['Slider_id']=$this->Sliders->find(
+        'all',
+        array(
+          'conditions'=>array(
+            'Sliders.name'=>'index'
+          ),
+          array(
+            'Sliders.id'
+          )));
+      $tmp['Slider_count']=count($tmp['Slider_id']);
 
+
+
+      for ($j=1; $j<=$tmp['Slider_count'] ; $j++) {
+        $tmp['Slider_id'][$j-1]=$tmp['Slider_id'][$j-1]['Sliders']['id'];
+
+        $tmp['Photo_id']=$this->Slider_photos->find(
+          //wszystkie...
+          'all',
+          //dla których...
+          array(
+            //warunki [WHERE]
+            'conditions'=>array(
+              'Slider_photos.slider_id'=>$tmp['Slider_id'][$j-1],
+              'Slider_photos.active'=>1
+            ),
+            //wybiera pola:
+            'fields'=>array(
+              'Slider_photos.id',
+              'Slider_photos.photo_id'
+            )));
+            $element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);;
+
+        for ($i=1; $i <=$slides_number ; $i++) {
+          $element['Photo'][$j-1][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
+        }
+      }
+        //END SLIDER1! ---------------------------------------------------------------------------------------
+
+    $element['Settings']=$this->get_settings();
+    //$this->dupcia($element);
     $this->set("element",$element);
+
     }
 
     public function about() {
       $element = $tmp = array();
-      $element['helper']['menu']='about';
       //START SLIDER1!  ---------------------------------------------------------------
   			$tmp['Slider_id']=$this->Sliders->find(
   				'all',
@@ -176,9 +216,9 @@
       $this->set('element',$element);
     }
 
-    public function meh(){
+    public function polecam(){
       $element = $tmp = array();
-      $element['helper']['menu']='meh';
+      $element['helper']['menu']='polecam';
 
       $this->set("element",$element);
     }

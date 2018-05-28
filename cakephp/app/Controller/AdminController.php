@@ -96,7 +96,115 @@ class AdminController extends AppController {
 }
 
 	public function dashboard(){
+		if (isset($_POST['menu'])) {
+			$data=$this->data;
+			$settings=$data['settings'];
+			foreach ($settings as $k => $v) {
+				if($v!=null){
+					$setting=array(
+						'id' => $k+7,
+						'name' => 'menu option '.$k,
+						'value' => $v
+					);
+				$this->Settings->save($setting);
+				}
+			}
+			$this->Session->setFlash('Dane zapisano');
+		}
+		$tmp['Slider_id']=$this->Sliders->find(
+			'all',
+			array(
+				'conditions'=>array(
+					'Sliders.name'=>'index'
+				),
+				array(
+					'Sliders.id'
+				)));
+		$tmp['Slider_count']=count($tmp['Slider_id']);
 
+
+
+		for ($j=1; $j<=$tmp['Slider_count'] ; $j++) {
+			$tmp['Slider_id'][$j-1]=$tmp['Slider_id'][$j-1]['Sliders']['id'];
+
+			$tmp['Photo_id']=$this->Slider_photos->find(
+				//wszystkie...
+				'all',
+				//dla których...
+				array(
+					//warunki [WHERE]
+					'conditions'=>array(
+						'Slider_photos.slider_id'=>$tmp['Slider_id'][$j-1],
+						'Slider_photos.active'=>1
+					),
+					//wybiera pola:
+					'fields'=>array(
+						'Slider_photos.id',
+						'Slider_photos.photo_id'
+					)));
+					$element['Slider'][$j-1]['number']=$slides_number=count($tmp['Photo_id']);
+
+			for ($i=1; $i <=$slides_number ; $i++) {
+				$element['Photo'][$j-1][$i]['1']=$this->get_photo($tmp['Photo_id'][$i-1]['Slider_photos']['photo_id']);
+				$element['Photo'][$j-1][$i]['2']=$tmp['Photo_id'][$i-1]['Slider_photos']['photo_id'];
+				$element['Photo'][$j-1][$i]['3']=$tmp['Photo_id'][$i-1]['Slider_photos']['id'];
+
+			}
+		}
+			//END SLIDER1! ---------------------------------------------------------------------------------------
+
+//START UPLOAD_PHOTOS ------------------------------------------------------------------------
+		if((isset($_POST['photo'])) || (isset($_POST['delete']))){
+
+			$data=$this->data;
+			if(isset($_POST['delete'])){
+				$data['Photo']=array(
+					'id'=>$data['Slider_photos.id'],
+					'slider_id'=>$data['Slider_id'],
+					'active'=>0
+				);
+				$this->Slider_photos->save($data['Photo']);
+				//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
+				$this->Session->setFlash('usunięto slajd');
+				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
+				$this->redirect(array('action'=>'dashboard'));
+			}else{
+				$photo=$_FILES['Photo'];
+				//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
+				$ret=$this->upload_photo($photo);
+				if($ret['0']==0){
+					//jeśli się nie uda dodanie id od zdjęcia, czytaj zdjęcie się nie dodało dostajemy info, że zdjęcie się nie dodało
+					$this->Session->setFlash('Błąd przy dodawaniu zdjęcia');
+					//i wysyła nas do dashboard...
+					$this->redirect(array('action'=>'dashboard'));
+				}else{
+					$data['Slider_photos']['photo_id']=$ret;
+				}
+				//zapisujemy naszego photosa do tablicy slider_photos.
+				if($data['id']>0){
+					$data['Photo']=array(
+						'id'=>$data['Slider_photos.id'],
+						'photo_id'=>$ret[0],
+						'slider_id'=>$data['Slider_id']
+					);
+				}else{
+					$data['Photo']=array(
+						'id'=>0,
+						'photo_id'=>$ret[0],
+						'slider_id'=>$data['Slider_id']
+					);
+				}
+				$this->Slider_photos->save($data['Photo']);
+				//setFlash to jednorazowy komunikat, można ostylować w flash.ctp
+				$this->Session->setFlash('Dane zapisane');
+				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
+				$this->redirect(array('action'=>'dashboard'));
+			}
+		}
+//END UPLOAD_PHOTOS ------------------------------------------------------------------------
+		$element['Settings']=$this->get_settings();
+		//$this->dupcia($element['Settings']);
+		$this->set('element',$element);
 	}
 	public function logout()
 	{
@@ -154,7 +262,6 @@ class AdminController extends AppController {
 		if((isset($_POST['photo'])) || (isset($_POST['delete']))){
 
 			$data=$this->data;
-			$photo=$_FILES['Photo'];
 			if(isset($_POST['delete'])){
 				$data['Photo']=array(
 					'id'=>$data['Slider_photos.id'],
@@ -167,6 +274,7 @@ class AdminController extends AppController {
 				//redirect wykonuje akcje, wysyłając nas tam, gdzie akcja kazała
 				$this->redirect(array('action'=>'about'));
 			}else{
+				$photo=$_FILES['Photo'];
 				//bawimy się zdjęciem PATRZ: UPLOAD_PHOTO. zabieramy id od Photo z tablicy photos.
 				$ret=$this->upload_photo($photo);
 				if($ret['0']==0){
@@ -311,12 +419,24 @@ class AdminController extends AppController {
 	}
 
 	public function folder_edit(){
+		$tmp=$this->Folders->find(
+			'first',
+			array(
+				'conditions'=>array(
+					'Folders.id'=>$_GET['id']
+				),
+				'fields'=>array(
+					'Folders.thumbnail'
+				)));
+				$hash=$tmp['Folders']['thumbnail'];
 		if(isset($_POST['folder_form'])){
 			if(trim($_POST['name']==null)){
 				$this->Session->setFlash('Podaj nazwę folderu');
 			}else{
-				$thumbnail=$this->upload_photo($_FILES['thumbnail']);
-				if(!(isset($thumbnail['hash']))){$thumbnail['hash']='';}
+				if ($_FILES['thumbnail']['type']!=''){
+					$thumbnail=$this->upload_photo($_FILES['thumbnail']);
+				}
+				if(!(isset($thumbnail['hash']))){$thumbnail['hash']=$hash;}
 				$folder=array(
 					'id' 					=>	$_GET['id'],
 					'name'				=>	$_POST['name'],
@@ -327,7 +447,6 @@ class AdminController extends AppController {
 				$this->Session->setFlash('Zapisano zmiany');
 			}
 		}
-
 		$folders=array();
 		$tmp=$this->Folders->find(
 			'first',
@@ -336,9 +455,9 @@ class AdminController extends AppController {
 					'Folders.id',
 				),
 				'order' =>array(
-					'id'=>'DESC'
+					'id'=>'DESC',
 				)));
-				$folder='folder_edit?id='.$tmp['Folders']['id'];
+		$folder='folder_edit?id='.$tmp['Folders']['id'];
 		 $element=$this->upload_gallery($_GET['id'],'folder_edit?id='.$_GET['id']);
 		 //znajduję aktywne foldery
 		$folders=$this->get_folders();
@@ -378,8 +497,33 @@ class AdminController extends AppController {
  }
 	public function contact() {
 	 $element = $tmp_element = array();
+	 // zapisywsanie tekstu do kontaktu
 	 if(isset($_POST['text'])){
 		 $this->upload_text('contact');
+	 }
+	 // ukrywanie telefonu
+	 if(isset($_POST['toggle_tel'])){
+		 switch(trim($_POST['toggle_tel'])){
+			 case 'Ukryj':
+			 	$setting=array('id' => '6', 'value' => 'off');
+			 	break;
+			case 'Pokaż':
+				$setting=array('id' => '6', 'value' => 'on');
+				break;
+		 }
+		 $this->Settings->save($setting);
+	 }
+	 // ukrywanie maila
+	 if(isset($_POST['toggle_mail'])){
+		 switch(trim($_POST['toggle_mail'])){
+			 case 'Ukryj':
+			 	$setting=array('id' => '7', 'value' => 'off');
+			 	break;
+			case 'Pokaż':
+				$setting=array('id' => '7', 'value' => 'on');
+				break;
+		 }
+		 $this->Settings->save($setting);
 	 }
 	 $element['Settings']=$this->get_settings();
 	 $this->set("element",$element);

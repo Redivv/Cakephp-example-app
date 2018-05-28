@@ -83,7 +83,7 @@
         <BR/>
       </form>
 
-    </div><?php } ?>
+    </div><?php }if (($element['Slider'][1]['number'])<4) {?>
     <div class="" style="width:25%; float:left; border:1px solid #f00;">
         Dodaj zdjęcie:
       <form class="" action="" method="post" enctype="multipart/form-data" name="">
@@ -96,6 +96,7 @@
 
     </div>
     <div class="clearfix"></div>
+  <?php } ?>
   Tekst 4
   <form class="" method="post">
     <input type="hidden" name="id" value="4">

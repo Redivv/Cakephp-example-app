@@ -14,18 +14,18 @@
 
     <div class="form col-md-8" style="padding:0;">
 
-      <div class="kontakt_box_all1">
+      <div class="kontakt_box_all1 m-b-30">
 
         <!-- name -->
-        <div class="small_box col-md-6" style="padding:0px;">
-  				<input class="small_box_in" style="width:100%; border-radius:5px;"  id="c_name" placeholder="imię">
+        <div class="small_box m-b-5 m-t-5 p-r-sbi">
+  				<input class="small_box_in " id="c_name" style="float:left;" placeholder="imię i nazwisko">
   				<div class="error err_c_name"></div>
         </div>
         <!-- name -->
 
         <!-- mail -->
-        <div class="small_box col-md-6" style="padding:0px;">
-  				<input class="small_box_in" style="width:100%; border-radius:5px;" id="c_email" placeholder="email">
+        <div class="small_box m-b-5 m-t-5 p-l-sbi">
+  				<input class="small_box_in" id="c_email" style="float:right;" placeholder="email">
   				<div class="error err_c_email"></div>
         </div>
         <!-- mail -->
@@ -33,29 +33,27 @@
         <div class="clearfix"></div>
         <!-- message -->
 
-        <div class="message">
-  				<textarea class="col-md-12" id="c_text" placeholder="wiadomość"></textarea>
+        <div class="message m-b-5 m-t-5">
+  				<textarea class="small_box_in" style="width:100%; resize:vertical;" id="c_text" placeholder="wiadomość"></textarea>
   				<div class="error err_c_text"></div>
         </div>
         <!-- message -->
 
-				<input type="submit" class="contact_btn">
+				<input type="submit" class="contact_btn m-t-5">
 			</div>
 			<div class="kontakt_box_all2">
 
 			</div>
     </div>
     <div class="info col-md-4" style="padding:0;">
-      <p>Telefon:</p>
-      <ul>
-        <li>Tu je telefon</li>
-        <li>Tu je telefon</li>
-      </ul>
-      <br>
-      <p>Email:</p>
-      <ul>
-        <li>Tu je mail</li>
-      </ul>
+
+      <div class="tel_box m-t-20" style="display:<?php switch ($element['Settings'][5]['Settings']['value']) {case 'off': echo ('none'); break; case 'on': echo (''); break; } ?>;">
+        <i class="fas fa-phone m-r-20"></i>514 899 274
+      </div>
+
+      <div class="mail_box m-t-10 m-b-20" style="display:<?php switch ($element['Settings'][6]['Settings']['value']) {case 'off': echo ('none'); break; case 'on': echo (''); break; } ?>;">
+        <i class="fas fa-envelope m-r-20"></i>marszta@gmail.com
+      </div>
     </div>
   </div>
 </section>
