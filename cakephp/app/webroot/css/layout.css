@@ -67,7 +67,6 @@ body{font-family: 'Roboto', sans-serif;}
 }
 .page_header .slide-menu .button{
   border-bottom: 1px solid #bc9774;
-  box-shadow:0.2px 0.2px 3px #bc9774;
   padding-bottom: 14px;
   padding-top: 15px;
   margin-left: 10px;
@@ -110,11 +109,11 @@ body{font-family: 'Roboto', sans-serif;}
 	text-transform:uppercase;
 	display:block;
   padding-bottom: 20px;
-  text-shadow: 0.2px 0.2px 3px #000000;
+  text-shadow: 0.2px 0.2px 3px #ffffff;
 }
 .menu_box .strip{
   background-color: #000;
-  box-shadow:0.2px 0.2px 3px #000000;
+  box-shadow:0.2px 0.2px 3px #ffffff;
   width:0px;
   height:1px;
   border-radius: 5%;
