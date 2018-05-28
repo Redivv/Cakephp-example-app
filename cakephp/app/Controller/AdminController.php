@@ -374,21 +374,9 @@ class AdminController extends AppController {
 					'gallery_id'	=>	$_GET['id'],
 					'thumbnail'		=>	$thumbnail['hash']
 				);
-				$folders=$this->Folders->find(
-					'first',
-					array(
-						'conditions'=>array(
-							'Folders.gallery_id'=>$_GET['id'],
-						),
-						'fields'=>array(
-							'Folders.id',
-						),
-						'order'=>array(
-							'id'=>'DESC'
-						)));
-				$new_folder_id=$folders['Folders']['id']+1;
-				$new_folder='folder_edit?id='.$new_folder_id;
 				$this->Folders->save($folder);
+				$folders=$this->Folders->id;
+				$new_folder='folder_edit?id='.$folders;
 				$this->Session->setFlash('Utworzono folder');
 				$this->redirect(array('action'=>$new_folder));
 			}
