@@ -18,6 +18,8 @@
     //pobieramy liczbę i nazwy galerii
 		$galleries=$this->get_galleries();
 		$this->set('galleries',$galleries);
+    $settingss=$this->get_settings();
+    $this->set('settingss',$settingss);
   }
 
 
