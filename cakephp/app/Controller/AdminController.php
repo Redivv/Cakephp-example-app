@@ -366,6 +366,9 @@ class AdminController extends AppController {
 					'name'	=>	$_POST['name']
 				);
 				$this->Galleries->save($gallery);
+				$action=$this->action;
+				$action.='?id='.$_GET['id'];
+				$this->redirect(array('action',$action));
 			}
 		}
 		//znajduję aktywne galerie
