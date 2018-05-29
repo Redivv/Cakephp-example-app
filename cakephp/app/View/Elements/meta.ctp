@@ -25,6 +25,10 @@
 <!-- Font Awesome -->
   <?php echo $this->Html->css('fontawesome/web-fonts-with-css/css/fontawesome-all.min.css')?>
 
+<!-- Light Box -->
+  <?php echo $this->Html->css('lightbox/lightbox.min.css'); ?>
+  <?php echo $this->Html->script('lightbox/lightbox.min.js'); ?>
+
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

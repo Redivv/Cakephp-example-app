@@ -309,12 +309,14 @@ body{font-family: 'Roboto', sans-serif;}
   -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
   clip-path: inset(0% 0% 0% 0% round 25px);
   overflow: hidden;
+}
+.folder_thumbnail_grey{
   -webkit-filter: grayscale(100%);
-  filter: grayscale(100%)
+  filter: grayscale(100%);
 }
 .folder_thumbnail:hover{
   -webkit-filter: grayscale(0%);
-  filter: grayscale(0%)
+  filter: grayscale(0%);
 }
 .folder_title{
   margin-top: 5px;
@@ -324,5 +326,10 @@ body{font-family: 'Roboto', sans-serif;}
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
 }
-
+.img_photo{
+  float:left;
+  display:block;
+  float:left;
+  margin-bottom:20px;
+}
 /* end galery */

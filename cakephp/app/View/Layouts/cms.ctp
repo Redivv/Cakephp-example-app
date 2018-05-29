@@ -5,7 +5,6 @@
 		<title>Admin</title>
 		<!-- Moje Pliki -->
 		<?php echo $this->Html->css('cms.css'); ?>
-		<?php echo $this->Html->css('main.css'); ?>
 
 	</head>
 	<body>
