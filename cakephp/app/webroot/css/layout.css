@@ -34,16 +34,15 @@ body{font-family: 'Roboto', sans-serif;}
   opacity: 1;
 }
 
-
-
 /*** Menu + Home ***/
 
 .page_header{
-	width:99%;
-	padding:0px 20px;
+	width:100%;
+	padding:0px;
 }
 .page_logo{
 	padding:32px 0 34px 0;
+  text-align: center;
 }
 
 .page_header #gallery:hover{
@@ -187,7 +186,7 @@ body{font-family: 'Roboto', sans-serif;}
   width:150px;
   height:60px;
   float:right;
-  margin-right:90px;
+  margin-right:11%;
   background-color: #ddd;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 20px;
@@ -246,16 +245,15 @@ body{font-family: 'Roboto', sans-serif;}
   width:300px;
 }
 .about .photo-box{
-  width:60%;
-  margin-left: 25%;
+  width:50%;
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
 }
 .about .photo-box .photo{
-  width:400px;
   height:300px;
   float: left;
   overflow: hidden;
-  margin: 20px;
 }
 .about .photo-box .photo_img{
   width:100%;
@@ -278,6 +276,7 @@ body{font-family: 'Roboto', sans-serif;}
 .kontakt_box_all1{
   display:block;
   height: 178px;
+  overflow: hidden;
 }
 .kontakt_box_all2{
   display:none;
@@ -309,8 +308,6 @@ body{font-family: 'Roboto', sans-serif;}
   -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
   clip-path: inset(0% 0% 0% 0% round 25px);
   overflow: hidden;
-}
-.folder_thumbnail_grey{
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
 }
@@ -331,5 +328,14 @@ body{font-family: 'Roboto', sans-serif;}
   display:block;
   float:left;
   margin-bottom:20px;
+}
+.img_thumbnail{
+  display: block;
+  width: 100%;
+  height:300px;
+  object-fit: cover;
+  -webkit-clip-path: inset(0% 0% 0% 0% round 15px);
+  clip-path: inset(0% 0% 0% 0% round 25px);
+  overflow: hidden;
 }
 /* end galery */

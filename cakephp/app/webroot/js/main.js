@@ -7,12 +7,15 @@ $(document).ready(function(){
 	    nav:false,
 	    responsive:{
 	        0:{
+	            items:1
+	        },
+	        768:{
 	            items:2
 	        },
-	        810:{
-	            items:3
-	        },
-	        1250:{
+					992:{
+							items:3
+					},
+	        1200:{
 	            items:4
 	        }
 	    }
