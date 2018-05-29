@@ -1,15 +1,11 @@
-
 @media (max-width: 767px) {
   .about .text{
-    width:400px;
+    width:350px;
   }
   .about .name, .introduction{
     width:286px;
   }
   .about .item{
-    height:250px;
-  }
-  .owl-carousel .owl-stage-outer{
     height:250px;
   }
   .small_box{
@@ -48,6 +44,16 @@
     width:47%;
     margin-left:1.5%;
     margin-right:1.5%;
+  }
+  .img_thumbnail{
+    height:150px;
+  }
+  .about .photo-box{
+    width:90%;
+  }
+  .about .photo-box .photo{
+    width:96%;
+    margin: 1.5%;
   }
 }
 
@@ -93,6 +99,16 @@
     margin-left:1.5%;
     margin-right:1.5%;
   }
+  .img_thumbnail{
+    height:250px;
+  }
+  .about .photo-box{
+    width:75%;
+  }
+  .about .photo-box .photo{
+    width:47%;
+    margin: 1.5%;
+  }
 }
 
 
@@ -137,6 +153,16 @@
     margin-left:1.5%;
     margin-right:1.5%;
   }
+  .img_thumbnail{
+    height:300px;
+  }
+  .about .photo-box{
+    width:60%;
+  }
+  .about .photo-box .photo{
+    width:47%;
+    margin: 1.5%;
+  }
 }
 
 
@@ -180,5 +206,15 @@
     width:30%;
     margin-left:1.5%;
     margin-right:1.5%;
+  }
+  .img_thumbnail{
+    height:350px;
+  }
+  .about .photo-box{
+    width:50%;
+  }
+  .about .photo-box .photo{
+    width:47%;
+    margin: 1.5%;
   }
 }
