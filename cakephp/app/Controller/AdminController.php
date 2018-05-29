@@ -485,6 +485,28 @@ class AdminController extends AppController {
 	 if(isset($_POST['text'])){
 		 $this->upload_text('contact');
 	 }
+	 // zmiana numeru telefonu
+	 if (isset($_POST['Nr'])) {
+	 	$nr=$this->data;
+		$setting=array(
+			'id'=>13,
+			'value'=>$nr['nr'],
+		);
+		$this->Settings->save($setting);
+		$this->Session->setFlash("Zapisano Dane");
+		$this->redirect(array('action'=>'contact'));
+	 }
+	 // zmiana adresu email
+	 if (isset($_POST['Mail'])) {
+	 	$mail=$this->data;
+		$setting=array(
+			'id'=>14,
+			'value'=>$mail['mail'],
+		);
+		$this->Settings->save($setting);
+		$this->Session->setFlash("Zapisano Dane");
+		$this->redirect(array('action'=>'contact'));
+	 }
 	 // ukrywanie telefonu
 	 if(isset($_POST['toggle_tel'])){
 		 switch(trim($_POST['toggle_tel'])){

@@ -44,7 +44,7 @@
   Tekst 1
   <form class="" method="post">
     <input type="hidden" name="id" value="1">
-    <input type="hidden" name="name" value="Text 1">
+    <input type="hidden" name="name" value="Text about 1">
     <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][0]['Settings']['value'] ?></textarea>
     <input type="submit" name="text">
   </form>
@@ -53,14 +53,14 @@
   Tekst 2
   <form class="" method="post">
     <input type="hidden" name="id" value="2">
-    <input type="hidden" name="name" value="Text 2">
+    <input type="hidden" name="name" value="Text about 2">
     <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][1]['Settings']['value'] ?></textarea>
     <input type="submit" name="text">
   </form>
   Tekst 3
   <form class="" method="post">
     <input type="hidden" name="id" value="3">
-    <input type="hidden" name="name" value="Text 3">
+    <input type="hidden" name="name" value="Text about 3">
     <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][2]['Settings']['value'] ?></textarea>
     <input type="submit" name="text">
   </form>
@@ -100,7 +100,7 @@
   Tekst 4
   <form class="" method="post">
     <input type="hidden" name="id" value="4">
-    <input type="hidden" name="name" value="Text 4">
+    <input type="hidden" name="name" value="Text about 4">
     <textarea style="width:100%;" type="text" name="data[settings]"><?php echo $element['Settings'][3]['Settings']['value'] ?></textarea>
     <input type="submit" name="text">
   </form>

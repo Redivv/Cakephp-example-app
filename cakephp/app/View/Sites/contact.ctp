@@ -48,11 +48,11 @@
     <div class="info col-md-4" style="padding:0;">
 
       <div class="tel_box m-t-20" style="display:<?php switch ($element['Settings'][5]['Settings']['value']) {case 'off': echo ('none'); break; case 'on': echo (''); break; } ?>;">
-        <i class="fas fa-phone m-r-20"></i>514 899 274
+        <i class="fas fa-phone m-r-20"></i><?php echo $element['Settings'][12]['Settings']['value']; ?>
       </div>
 
       <div class="mail_box m-t-10 m-b-20" style="display:<?php switch ($element['Settings'][6]['Settings']['value']) {case 'off': echo ('none'); break; case 'on': echo (''); break; } ?>;">
-        <i class="fas fa-envelope m-r-20"></i>marszta@gmail.com
+        <i class="fas fa-envelope m-r-20"></i><?php echo $element['Settings'][13]['Settings']['value']; ?>
       </div>
     </div>
   </div>
