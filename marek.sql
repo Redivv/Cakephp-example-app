@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Maj 2018, 10:50
+-- Czas generowania: 29 Maj 2018, 12:20
 -- Wersja serwera: 10.1.26-MariaDB
 -- Wersja PHP: 7.1.9
 
@@ -94,9 +94,9 @@ INSERT INTO `folder_photos` (`id`, `folder_id`, `photo_id`, `active`) VALUES
 
 CREATE TABLE `galleries` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL,
-  `active` varchar(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` varchar(250) CHARACTER SET latin1 NOT NULL,
+  `active` varchar(1) CHARACTER SET latin1 NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `galleries`
