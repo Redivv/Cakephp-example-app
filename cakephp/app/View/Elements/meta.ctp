@@ -25,7 +25,7 @@
 <!-- Font Awesome -->
   <?php echo $this->Html->css('fontawesome/web-fonts-with-css/css/fontawesome-all.min.css')?>
 
-<!-- Light Box -->
+<!-- Light Box Light Box Lokesh Dhakar http://lokeshdhakar.com/projects/lightbox2/ MIT License -->
   <?php echo $this->Html->css('lightbox/lightbox.min.css'); ?>
   <?php echo $this->Html->script('lightbox/lightbox.min.js'); ?>
 
