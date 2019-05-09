@@ -40,7 +40,7 @@ function mailsend($txt='', $header='' , $mail='mail Marka'){
             $header='No title';
         }
 
-        return mail($mail, $header, $wiadomosc, $naglowki, 'info@jakubrajca.pl');
+        return mail($mail, $header, $wiadomosc, $naglowki, 'info@wipaka.com.pl');
 
 }
 
